@@ -1,0 +1,22 @@
+.HeaderBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  padding-left: 10%;
+  padding-right: 10%;
+  background-color: darkgray;
+}
+
+.userbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.userbtn {
+  margin-left: 5px;
+  margin-right: 5px;
+}

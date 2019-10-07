@@ -2,7 +2,7 @@ export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 
-import * as Util from `../util/session_api_util`
+import * as Util from "../util/session_api_util"
 
 const receiverCurrentUser = user => ({
   type: RECEIVE_CURRENT_USER,
@@ -29,5 +29,6 @@ export const login = user => dispatch => {
 }
 
 export const logout = () => dispatch => {
-  return Util.logout().then( () => dispatch(logoutCurrentUser()))
-}
+  return Util.logout().then(() => dispatch(logoutCurrentUser()));
+};
+
