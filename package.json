@@ -37,5 +37,6 @@
   "bugs": {
     "url": "https://github.com/jork41989/cumulusNote/issues"
   },
-  "homepage": "https://github.com/jork41989/cumulusNote#readme"
+  "homepage": "https://github.com/jork41989/cumulusNote#readme",
+  "devDependencies": {}
 }

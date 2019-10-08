@@ -5,7 +5,13 @@ import { Link } from 'react-router-dom';
 export default class SessionForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.props.userInfo
+    this.state = {
+      username: '',
+      password: '',
+      f_name: '',
+      l_name: '',
+      email: ''
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -17,19 +23,32 @@ export default class SessionForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const user = Object.assign({}, this.state);
-    this.props.processForm(user);
+    this.props.processForm(user).then(this.props.closeModal);
   }
 
   emailSignup() {
     if (this.props.formType === "signup")
       return (
         <div className="sessionField">
-          <label>
-            Email:
-            <input type="text"
-              value={this.state.email}
-              onChange={this.update('email')} />
-          </label>
+          
+          <input type="text"
+            value={this.state.email}
+            onChange={this.update('email')}
+            className="login-input" 
+            placeholder="Email" /> 
+          <br />
+          <input type="text"
+            value={this.state.f_name}
+            onChange={this.update('f_name')}
+            className="login-input"
+            placeholder="First Name" />
+          <br />
+          <input type="text"
+            value={this.state.l_name}
+            onChange={this.update('l_name')}
+            className="login-input"
+            placeholder="Last Name" />
+          <br />
         </div>
       );
 
@@ -38,61 +57,60 @@ export default class SessionForm extends React.Component {
 
 
 
-  headEr() {
-    if (this.props.formType === "signup") {
-      return (
-        <h2>Please Sign Up or <Link to={'/login'}>Log In!</Link></h2>
-      )
-    } else {
-      return (
-        <h2>Please Log In or  <Link to={'/signup'}>Sign Up!</Link></h2>
-      )
-    };
-  }
+  
 
-  render() {
-
+  renderErrors() {
     return (
-      <div className="sessionFormDiv">
-
-
-        <form onSubmit={this.handleSubmit} className="sessionForm">
-          {this.headEr()}
-          {this.props.errors && this.props.errors.map((ele, idx) => {
-            return <li key={`error-${idx}`}>{ele}</li>
-          })}
-          <div className="sessionField">
-            <label>
-              Username:
-            <input type="text"
-                value={this.state.username}
-                onChange={this.update('username')} />
-            </label>
-          </div>
-          <div className="sessionField">
-            <label >
-              Password:
-            <input type="password"
-                value={this.state.password}
-                onChange={this.update('password')} />
-            </label>
-            {this.emailSignup()}
-          </div>
-
-
-
-
-
-
-          <input type="submit" value="Submit" />
-        </form>
-
-      </div>
-
+      <ul>
+        {this.props.errors.map((error, i) => (
+          <li key={`error-${i}`}>
+            {error}
+          </li>
+        ))}
+        
+      </ul>
+      
     );
   }
 
+  
 
+  render() {
+    return (
+      <div className="login-form-container">
+        <form onSubmit={this.handleSubmit} className="login-form-box">
+          <p>Welcome to cumulusNote!</p> 
+          <div className="loginFormButtons">Please {this.props.formType} or {this.props.otherForm}</div> 
+          <div onClick={this.props.closeModal} className="close-x">X</div>
+          {this.renderErrors()}
+          <div className="login-form">
+            {this.emailSignup()}
+            
+            
+              <input type="text"
+                value={this.state.username}
+                onChange={this.update('username')}
+                className="login-input"
+                placeholder="Username"
+              />
+            
+            
+            <br />
+            
+              <input type="password"
+                value={this.state.password}
+                onChange={this.update('password')}
+                className="login-input"
+                placeholder="Password"
+              />
+            
+            <br />
+            <input className="session-submit" type="submit" value={this.props.formType} />
+          </div>
+        </form>
+      </div>
+    );
+  }
 
 }
 
