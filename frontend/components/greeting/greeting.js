@@ -2,7 +2,6 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 export default ({ currentUser, logout, openModal }) => {
-  console.log(currentUser)
   const sessionLinks = () => (
     <nav className="login-signup">
       <button onClick={() => openModal('login')} className="loginbtn">Login</button>
