@@ -79,8 +79,9 @@ export default class SessionForm extends React.Component {
     return (
       <div className="login-form-container">
         <form onSubmit={this.handleSubmit} className="login-form-box">
-          <p>Welcome to cumulusNote!</p> 
-          <div className="loginFormButtons">Please {this.props.formType} or {this.props.otherForm}</div> 
+          <p className={"loginFormHeader"}>Welcome to </p> 
+          <div className="formLogoDiv"><img src={window.logoURL} alt="" className={"formLogo"} /><p>cumulusNote</p></div>
+          <div className="">Please {this.props.formType} or {this.props.otherForm}</div> 
           <div onClick={this.props.closeModal} className="close-x">X</div>
           {this.renderErrors()}
           <div className="login-form">

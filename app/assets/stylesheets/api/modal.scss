@@ -26,7 +26,10 @@
    background-color: white;
   padding: 40px;
   border-radius: 5px;
+  text-align: center;
  }
+
+
 
  .login-input {
    font-size: 20px;
@@ -50,5 +53,24 @@
 }
 
  .loginFormButtons {
+    border-radius: 5px;
+    background-color: #f50;
+    height: 20px;
+    color: white;
+    height: 25px;
+    font-size: 16px;
+ }
 
+ .header-name {
+   color: white;
+   font-size: 16px
+ }
+.formLogoDiv{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+ .formLogo{
+   height: 50px;
  }

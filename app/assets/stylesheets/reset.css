@@ -1,5 +1,6 @@
-html, body, h2, p {
+html, body, h2, p, h1, h3 {
 	margin: 0;
 	padding: 0;
 	border: 0;
+	font-family: sans-serif;
 }

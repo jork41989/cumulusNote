@@ -266,7 +266,7 @@ __webpack_require__.r(__webpack_exports__);
   var personalGreeting = function personalGreeting() {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hgroup", {
       className: "header-group"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "header-name"
     }, currentUser.f_name, " ", currentUser.l_name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       className: "logout-button",
@@ -463,7 +463,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
     otherForm: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       onClick: function onClick() {
         return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["openModal"])('signup'));
-      }
+      },
+      className: "loginFormButtons"
     }, "Signup"),
     closeModal: function closeModal() {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["closeModal"])());
@@ -591,8 +592,16 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit,
         className: "login-form-box"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Welcome to cumulusNote!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "loginFormButtons"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "loginFormHeader"
+      }, "Welcome to "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "formLogoDiv"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: window.logoURL,
+        alt: "",
+        className: "formLogo"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "cumulusNote")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: ""
       }, "Please ", this.props.formType, " or ", this.props.otherForm), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         onClick: this.props.closeModal,
         className: "close-x"
@@ -670,7 +679,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
     otherForm: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       onClick: function onClick() {
         return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__["openModal"])('login'));
-      }
+      },
+      className: "loginFormButtons"
     }, "Login"),
     closeModal: function closeModal() {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__["closeModal"])());

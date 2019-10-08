@@ -11,7 +11,7 @@ export default ({ currentUser, logout, openModal }) => {
   );
   const personalGreeting = () => (
     <hgroup className="header-group">
-      <h2 className="header-name">{currentUser.f_name} {currentUser.l_name}</h2>
+      <p className="header-name">{currentUser.f_name} {currentUser.l_name}</p>
       <button className="logout-button" onClick={logout}>Log Out</button>
     </hgroup>
   );

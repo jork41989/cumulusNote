@@ -17,7 +17,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => ({
   processForm: (user) => dispatch(login(user)),
   otherForm: (
-    <button onClick={() => dispatch(openModal('signup'))}>
+    <button onClick={() => dispatch(openModal('signup'))} className="loginFormButtons">
       Signup
     </button>
   ),
