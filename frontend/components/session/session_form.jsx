@@ -117,11 +117,12 @@ export default class SessionForm extends React.Component {
   render() {
     return (
       <div className="login-form-container">
+        <p className={"loginFormHeader"}>Welcome to </p>
+        <div className="formLogoDiv"><img src={window.logoURL} alt="" className={"formLogo"} /><p>cumulusNote</p></div>
+        <div className="">Please {this.props.formType} or {this.props.otherForm}</div>
+        <div onClick={this.props.closeModal} className="close-x">X</div>
         <form onSubmit={this.handleSubmit} className="login-form-box">
-          <p className={"loginFormHeader"}>Welcome to </p> 
-          <div className="formLogoDiv"><img src={window.logoURL} alt="" className={"formLogo"} /><p>cumulusNote</p></div>
-          <div className="">Please {this.props.formType} or {this.props.otherForm}</div> 
-          <div onClick={this.props.closeModal} className="close-x">X</div>
+       
           {this.renderErrors()}
           <div className="login-form">
             {this.emailSignup()}

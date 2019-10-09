@@ -634,9 +634,6 @@ function (_React$Component) {
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "login-form-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.handleSubmit,
-        className: "login-form-box"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "loginFormHeader"
       }, "Welcome to "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -650,7 +647,10 @@ function (_React$Component) {
       }, "Please ", this.props.formType, " or ", this.props.otherForm), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         onClick: this.props.closeModal,
         className: "close-x"
-      }, "X"), this.renderErrors(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "X"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleSubmit,
+        className: "login-form-box"
+      }, this.renderErrors(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "login-form"
       }, this.emailSignup(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
