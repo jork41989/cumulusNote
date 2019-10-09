@@ -32,6 +32,7 @@ export default class SessionForm extends React.Component {
     this.state.username = 'TobiasFunke1';
     this.state.password = 'BlueMan99!';
     const user = Object.assign({}, this.state);
+
     this.props.processForm(user).then(this.props.closeModal);
   }
 
@@ -77,34 +78,38 @@ export default class SessionForm extends React.Component {
 
   setErrors() {
     const finError = []
-    this.props.errors.forEach( error => {
-      if (error === "F name can't be blank") {
-        finError.push("Please enter a first name!")
-      } else if (error === "L name can't be blank") {
-        finError.push("Please enter a last name!")
-      } else {
-        finError.push(error)
-      }
+    if (this.props.errors){ 
+      console.log(this.props.errors)
+      this.props.errors.forEach( error => {
+        if (error === "F name can't be blank") {
+          finError.push("Please enter a first name!")
+        } else if (error === "L name can't be blank") {
+          finError.push("Please enter a last name!")
+        } else {
+          finError.push(error)
+        }
     })
-    return finError
+    }
+    console.log(finError)
+    return finError 
+    
   }
 
   
 
   renderErrors() {
-    
-    return (
-      <ul>
-        {this.setErrors().map((error, i) => (
-          
-          <li key={`error-${i}`} className="formError">
-            {error}
-          </li>
-        ))}
-        
-      </ul>
-      
-    );
+            return (
+              <ul>
+                {this.setErrors().map((error, i) => (
+                  
+                  <li key={`error-${i}`} className="formError">
+                    {error}
+                  </li>
+                ))}
+                
+              </ul>
+              
+            );
   }
 
   

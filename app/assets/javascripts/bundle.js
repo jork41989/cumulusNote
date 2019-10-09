@@ -602,15 +602,21 @@ function (_React$Component) {
     key: "setErrors",
     value: function setErrors() {
       var finError = [];
-      this.props.errors.forEach(function (error) {
-        if (error === "F name can't be blank") {
-          finError.push("Please enter a first name!");
-        } else if (error === "L name can't be blank") {
-          finError.push("Please enter a last name!");
-        } else {
-          finError.push(error);
-        }
-      });
+
+      if (this.props.errors) {
+        console.log(this.props.errors);
+        this.props.errors.forEach(function (error) {
+          if (error === "F name can't be blank") {
+            finError.push("Please enter a first name!");
+          } else if (error === "L name can't be blank") {
+            finError.push("Please enter a last name!");
+          } else {
+            finError.push(error);
+          }
+        });
+      }
+
+      console.log(finError);
       return finError;
     }
   }, {
@@ -1091,7 +1097,7 @@ __webpack_require__.r(__webpack_exports__);
 var signup = function signup(user) {
   return $.ajax({
     method: 'POST',
-    url: "/api/user",
+    url: "/api/users",
     data: {
       user: user
     }
