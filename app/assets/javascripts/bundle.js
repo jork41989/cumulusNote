@@ -554,7 +554,7 @@ function (_React$Component) {
     key: "demoLogin",
     value: function demoLogin(e) {
       e.preventDefault();
-      this.state.username = 'TobiasFunke';
+      this.state.username = 'TobiasFunke1';
       this.state.password = 'BlueMan99!';
       var user = Object.assign({}, this.state);
       this.props.processForm(user).then(this.props.closeModal);

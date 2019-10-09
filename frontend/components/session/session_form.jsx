@@ -29,7 +29,7 @@ export default class SessionForm extends React.Component {
 
   demoLogin(e){
     e.preventDefault();
-    this.state.username = 'TobiasFunke';
+    this.state.username = 'TobiasFunke1';
     this.state.password = 'BlueMan99!';
     const user = Object.assign({}, this.state);
     this.props.processForm(user).then(this.props.closeModal);
