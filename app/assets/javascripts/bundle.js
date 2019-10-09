@@ -530,6 +530,7 @@ function (_React$Component) {
       email: ''
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.demoLogin = _this.demoLogin.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -550,29 +551,52 @@ function (_React$Component) {
       this.props.processForm(user).then(this.props.closeModal);
     }
   }, {
+    key: "demoLogin",
+    value: function demoLogin(e) {
+      e.preventDefault();
+      this.state.username = 'TobiasFunke';
+      this.state.password = 'BlueMan99!';
+      var user = Object.assign({}, this.state);
+      this.props.processForm(user).then(this.props.closeModal);
+    }
+  }, {
+    key: "demoButton",
+    value: function demoButton() {
+      if (this.props.formType === "login") {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "sessionField"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "session-submit",
+          onClick: this.demoLogin
+        }, "Demo User"));
+      }
+    }
+  }, {
     key: "emailSignup",
     value: function emailSignup() {
-      if (this.props.formType === "signup") return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "sessionField"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
-        value: this.state.email,
-        onChange: this.update('email'),
-        className: "login-input",
-        placeholder: "Email"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
-        value: this.state.f_name,
-        onChange: this.update('f_name'),
-        className: "login-input",
-        placeholder: "First Name"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
-        value: this.state.l_name,
-        onChange: this.update('l_name'),
-        className: "login-input",
-        placeholder: "Last Name"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null));
+      if (this.props.formType === "signup") {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "sessionField"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "text",
+          value: this.state.email,
+          onChange: this.update('email'),
+          className: "login-input",
+          placeholder: "Email"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "text",
+          value: this.state.f_name,
+          onChange: this.update('f_name'),
+          className: "login-input",
+          placeholder: "First Name"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "text",
+          value: this.state.l_name,
+          onChange: this.update('l_name'),
+          className: "login-input",
+          placeholder: "Last Name"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null));
+      }
     }
   }, {
     key: "setErrors",
@@ -638,7 +662,7 @@ function (_React$Component) {
         className: "session-submit",
         type: "submit",
         value: this.props.formType
-      }))));
+      })), this.demoButton()));
     }
   }]);
 

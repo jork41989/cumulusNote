@@ -13,6 +13,7 @@ export default class SessionForm extends React.Component {
       email: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.demoLogin = this.demoLogin.bind(this);
   }
 
   update(feild) {
@@ -26,8 +27,26 @@ export default class SessionForm extends React.Component {
     this.props.processForm(user).then(this.props.closeModal);
   }
 
+  demoLogin(e){
+    e.preventDefault();
+    this.state.username = 'TobiasFunke';
+    this.state.password = 'BlueMan99!';
+    const user = Object.assign({}, this.state);
+    this.props.processForm(user).then(this.props.closeModal);
+  }
+
+  demoButton () {
+    if (this.props.formType === "login"){
+      return (
+        <div className="sessionField">
+          <button className="session-submit" onClick={this.demoLogin}>Demo User</button>
+        </div>
+      )
+    }
+  }
+
   emailSignup() {
-    if (this.props.formType === "signup")
+    if (this.props.formType === "signup"){
       return (
         <div className="sessionField">
           
@@ -50,7 +69,8 @@ export default class SessionForm extends React.Component {
             placeholder="Last Name" />
           <br />
         </div>
-      );
+      
+      )}
 
   }
 
@@ -122,6 +142,7 @@ export default class SessionForm extends React.Component {
             <br />
             <input className="session-submit" type="submit" value={this.props.formType} />
           </div>
+          {this.demoButton()}
         </form>
       </div>
     );
