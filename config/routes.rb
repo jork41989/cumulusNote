@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'static_pages#root'
 
   namespace :api, defaults: {format: :json} do
-    resources :users, only: [:create, :index, :show] # messy routes, do full after implementation
+    resources :users, only: [:create, :index, :show, :update,] # messy routes, do full after implementation
     resource :session, only: [:create, :destroy, :show]
 
   end

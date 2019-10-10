@@ -5,6 +5,8 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 6, allow_nil: true }
   
   after_initialize :ensure_session_token
+
+  has_one_attached :profile_photo
   attr_reader :password
   #FeGrip
 
