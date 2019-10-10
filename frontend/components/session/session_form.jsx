@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 
+
 export default class SessionForm extends React.Component {
   constructor(props) {
     super(props);
@@ -27,6 +28,9 @@ export default class SessionForm extends React.Component {
     this.props.processForm(user).then(this.props.closeModal);
   }
 
+  componentDidMount(){
+    this.props.clearErrors();
+  }
   
 
   demoLogin(e){

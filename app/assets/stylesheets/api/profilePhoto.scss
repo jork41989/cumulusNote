@@ -5,3 +5,30 @@
   text-align: center;
   width: 400px;
 }
+
+.profilePicPreview{
+  width: 100px;
+  height: 100px;
+}
+
+
+.profileBgPreview{
+  width: 200px;
+  height: 100px;
+}
+
+.profileEditInput {
+  font-size: 20px;
+   margin-top: 10px;
+   border: 1px solid black;
+   border-radius: 5px;
+   width: 400px;
+   height: 35px;
+   align-content: center;
+   text-align: center;
+   cursor: pointer;
+}
+
+.profileEditInput::-webkit-file-upload-button {
+  visibility: hidden;
+}

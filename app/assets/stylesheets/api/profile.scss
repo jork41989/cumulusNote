@@ -7,6 +7,8 @@
   justify-content: space-around;
   align-items: center;
   position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .profile_info {
   width: 95%;
@@ -20,7 +22,13 @@
   height: 200px;
   width: 200px;
   margin-right: 30px;
-  background-color: green;
+  background-color: transparent;
+}
+
+.profile_photo img {
+  max-width: 200px;
+  max-height: 200px;
+  border-radius: 50%;
 }
 
 .profile_user_name {

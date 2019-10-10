@@ -20,17 +20,26 @@ export default class UserProfile extends React.Component {
     })
   }
 
+  componentDidUpdate(prevProps){
+    if (prevProps.match.params.id != this.props.match.params.id) {
+    this.props.requestSingleUser(this.userId).then(response => {
+
+      this.setState({ user: response.user });
+    })
+  }
+  }
+
   profileEdit(){
 
-    if (this.props.currentUser){
+    if (this.props.currentUser && this.props.user){
     if( this.props.user.id === this.props.currentUser.id) {
       return(
         <button className={"profile_edit_button"} onClick={() => this.props.openModal('profilePhoto')}><img src={window.photoEdit} className={"profile_edit_photo"} alt={"edit profile photos"} /></button>
       )
     } else {
       return (
-        <div className={"profile_photo_form_div"}>
-
+        <div >
+         
         </div>
       )
     }
@@ -38,12 +47,29 @@ export default class UserProfile extends React.Component {
   }
 
   render() {
+    let profilepic
+    let profileBg
     if (this.state.user){
+      if (this.state.user.profile_background){
+      profileBg = {
+        backgroundImage: `url('${this.state.user.profile_background}')`
+      }
+    } else {
+        profileBg = {
+         
+        }
+    }
+
+    if (this.state.user.profile_photo) {
+      profilepic = this.state.user.profile_photo
+      } else (
+        profilepic = window.profileP
+      )
       return (
-          <div className={"profile_background"}>
+        <div style={profileBg} className={'profile_background'}>
             <div className={"profile_info"}>
               <div className={"profile_photo"}>
-
+                <img src={profilepic} alt=""/>
               </div>
               <div className={"profile_user_info"}>
                 <p className={"profile_user_name"}>{this.state.user.f_name} {this.state.user.l_name}</p>

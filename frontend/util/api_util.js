@@ -8,8 +8,14 @@ export const fetchAllUsers = () => ($.ajax({
   type: 'GET'
 }));
 
-export const updateUser = user => ($.ajax({
+export const updateUser = (userId, user) => {
+  
+  console.log(userId)
+  console.log(user)
+  return $.ajax({
   method: `PATCH`,
-  url:  `/api/users/${user.id}`,
-  data: {user}
-}))
+  url:  `/api/users/${userId}`,
+  data: user ,
+  contentType: false,
+  processData: false
+})}

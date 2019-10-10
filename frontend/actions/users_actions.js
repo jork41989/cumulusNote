@@ -22,6 +22,6 @@ export const requestAllUsers = () => (dispatch) => (
   fetchAllUsers().then(users => dispatch(receiveAUser(users)))
 )
 
-export const updateAuser = user => (dispatch) => (
-  updateUser(user).then(user => dispatch(receiveAUser(user)))
+export const updateAuser = (userId, user) => (dispatch) => (
+  updateUser(userId, user).then(user => dispatch(receiveAUser(user)))
 )

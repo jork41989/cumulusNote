@@ -17,11 +17,10 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  const userId = parseInt(ownProps.match.params.id);
+ 
   return {
-    requestSingleUser: () => dispatch(requestSingleUser(userId)),
     closeModal: () => dispatch(closeModal()),
-    updateAuser: (user) => dispatch(updateAuser(user))
+    updateAuser: (userId, user) => dispatch(updateAuser(userId, user))
   }
 }
 

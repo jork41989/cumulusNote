@@ -1,4 +1,4 @@
-import {RECEIVE_SESSION_ERRORS, RECEIVE_CURRENT_USER} from '../actions/session_actions';
+import {RECEIVE_SESSION_ERRORS, RECEIVE_CURRENT_USER, CLEAR_ERRORS} from '../actions/session_actions';
  
 
 const _nullSession = {
@@ -12,6 +12,8 @@ const _nullSession = {
    switch (actions.type) {
       case RECEIVE_SESSION_ERRORS:
         return Object.assign({}, {errors: actions.errors});
+      case CLEAR_ERRORS:
+        return _nullSession
       case RECEIVE_CURRENT_USER:
         return _nullSession
       default:

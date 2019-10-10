@@ -119,7 +119,7 @@ var closeModal = function closeModal() {
 /*!*********************************************!*\
   !*** ./frontend/actions/session_actions.js ***!
   \*********************************************/
-/*! exports provided: RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER, RECEIVE_SESSION_ERRORS, signup, login, logout */
+/*! exports provided: RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER, RECEIVE_SESSION_ERRORS, CLEAR_ERRORS, clearErrors, signup, login, logout */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -127,6 +127,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_CURRENT_USER", function() { return RECEIVE_CURRENT_USER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGOUT_CURRENT_USER", function() { return LOGOUT_CURRENT_USER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_SESSION_ERRORS", function() { return RECEIVE_SESSION_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAR_ERRORS", function() { return CLEAR_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearErrors", function() { return clearErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signup", function() { return signup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "login", function() { return login; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return logout; });
@@ -134,6 +136,7 @@ __webpack_require__.r(__webpack_exports__);
 var RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 var LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
 var RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
+var CLEAR_ERRORS = "CLEAR_ERRORS";
 
 
 var receiverCurrentUser = function receiverCurrentUser(user) {
@@ -156,6 +159,11 @@ var receiveErrors = function receiveErrors(errors) {
   };
 };
 
+var clearErrors = function clearErrors() {
+  return {
+    type: CLEAR_ERRORS
+  };
+};
 var signup = function signup(user) {
   return function (dispatch) {
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["signup"](user).then(function (user) {
@@ -230,9 +238,9 @@ var requestAllUsers = function requestAllUsers() {
     });
   };
 };
-var updateAuser = function updateAuser(user) {
+var updateAuser = function updateAuser(userId, user) {
   return function (dispatch) {
-    return Object(_util_api_util__WEBPACK_IMPORTED_MODULE_0__["updateUser"])(user).then(function (user) {
+    return Object(_util_api_util__WEBPACK_IMPORTED_MODULE_0__["updateUser"])(userId, user).then(function (user) {
       return dispatch(receiveAUser(user));
     });
   };
@@ -488,9 +496,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -512,8 +520,14 @@ function (_React$Component) {
     _this.state = {
       f_name: '',
       l_name: '',
-      profile_photo: null
+      profilePhotoFile: null,
+      profilePhotoUrl: null,
+      profileBackgroundFile: null,
+      profileBackgroundUrl: null
     };
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
+    _this.userId = _this.props.location.pathname[7];
     return _this;
   }
 
@@ -523,23 +537,47 @@ function (_React$Component) {
       e.preventDefault();
       var formData = new FormData();
 
-      if (this.state.profile_photo) {
-        formData.append('post[photo]', this.state.profile_photo);
+      if (this.state.profilePhotoFile) {
+        formData.append('user[profile_photo]', this.state.profilePhotoFile);
       }
+
+      if (this.state.profileBackgroundFile) {
+        formData.append('user[profile_background]', this.state.profileBackgroundFile);
+      }
+
+      var id = this.userId;
+      this.props.updateAuser(id, formData).then(this.props.closeModal);
     }
   }, {
     key: "handleFile",
-    value: function handleFile(e) {
+    value: function handleFile(e, type) {
       var _this2 = this;
 
       var file = e.currentTarget.files[0];
       var fileReader = new FileReader();
+      var obj;
 
       fileReader.onloadend = function () {
-        _this2.setState({
-          photoFile: file,
-          photoUrl: fileReader.result
-        });
+        switch (type) {
+          case 'profilePhoto':
+            obj = {
+              profilePhotoFile: file,
+              profilePhotoUrl: fileReader.result
+            };
+            break;
+
+          case 'backgroundPhoto':
+            obj = {
+              profileBackgroundFile: file,
+              profileBackgroundUrl: fileReader.result
+            };
+            break;
+
+          default:
+            return null;
+        }
+
+        _this2.setState(obj);
       };
 
       if (file) {
@@ -549,9 +587,38 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this3 = this;
+
+      console.log(this.state);
+      var previewProfilePic = this.state.profilePhotoUrl ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: this.state.profilePhotoUrl,
+        className: "profilePicPreview"
+      }) : null;
+      var previewProfileBg = this.state.profileBackgroundUrl ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: this.state.profileBackgroundUrl,
+        className: "profileBgPreview"
+      }) : null;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "login-form-container"
-      }, "hello!");
+        className: "profile_photo_form_div"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleSubmit
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Profile Photo"), previewProfilePic, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "file",
+        onChange: function onChange(e) {
+          return _this3.handleFile(e, "profilePhoto");
+        },
+        className: "profileEditInput"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Background Photo"), previewProfileBg, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "file",
+        onChange: function onChange(e) {
+          return _this3.handleFile(e, "backgroundPhoto");
+        },
+        className: "profileEditInput"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "submit",
+        value: "Update Profile photos",
+        className: "session-submit"
+      })));
     }
   }]);
 
@@ -597,16 +664,12 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
-  var userId = parseInt(ownProps.match.params.id);
   return {
-    requestSingleUser: function requestSingleUser() {
-      return dispatch(Object(_actions_users_actions__WEBPACK_IMPORTED_MODULE_2__["requestSingleUser"])(userId));
-    },
     closeModal: function closeModal() {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["closeModal"])());
     },
-    updateAuser: function updateAuser(user) {
-      return dispatch(Object(_actions_users_actions__WEBPACK_IMPORTED_MODULE_2__["updateAuser"])(user));
+    updateAuser: function updateAuser(userId, user) {
+      return dispatch(Object(_actions_users_actions__WEBPACK_IMPORTED_MODULE_2__["updateAuser"])(userId, user));
     }
   };
 };
@@ -665,6 +728,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   var errors = state.errors.session.errors;
   var userInfo = {
@@ -691,6 +755,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
     }, "Signup"),
     closeModal: function closeModal() {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["closeModal"])());
+    },
+    clearErrors: function clearErrors() {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["clearErrors"])());
     }
   };
 };
@@ -773,6 +840,11 @@ function (_React$Component) {
       e.preventDefault();
       var user = Object.assign({}, this.state);
       this.props.processForm(user).then(this.props.closeModal);
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.clearErrors();
     }
   }, {
     key: "demoLogin",
@@ -924,6 +996,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   var errors = state.errors.session.errors;
   var userInfo = {
@@ -953,6 +1026,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
     }, "Login"),
     closeModal: function closeModal() {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__["closeModal"])());
+    },
+    clearErrors: function clearErrors() {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["clearErrors"])());
     }
   };
 };
@@ -1026,16 +1102,29 @@ function (_React$Component) {
       });
     }
   }, {
-    key: "profileEdit",
-    value: function profileEdit() {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
       var _this3 = this;
 
-      if (this.props.currentUser) {
+      if (prevProps.match.params.id != this.props.match.params.id) {
+        this.props.requestSingleUser(this.userId).then(function (response) {
+          _this3.setState({
+            user: response.user
+          });
+        });
+      }
+    }
+  }, {
+    key: "profileEdit",
+    value: function profileEdit() {
+      var _this4 = this;
+
+      if (this.props.currentUser && this.props.user) {
         if (this.props.user.id === this.props.currentUser.id) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
             className: "profile_edit_button",
             onClick: function onClick() {
-              return _this3.props.openModal('profilePhoto');
+              return _this4.props.openModal('profilePhoto');
             }
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
             src: window.photoEdit,
@@ -1043,23 +1132,40 @@ function (_React$Component) {
             alt: "edit profile photos"
           }));
         } else {
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "profile_photo_form_div"
-          });
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
         }
       }
     }
   }, {
     key: "render",
     value: function render() {
+      var profilepic;
+      var profileBg;
+
       if (this.state.user) {
+        if (this.state.user.profile_background) {
+          profileBg = {
+            backgroundImage: "url('".concat(this.state.user.profile_background, "')")
+          };
+        } else {
+          profileBg = {};
+        }
+
+        if (this.state.user.profile_photo) {
+          profilepic = this.state.user.profile_photo;
+        } else profilepic = window.profileP;
+
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "profile_background"
+          style: profileBg,
+          className: 'profile_background'
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "profile_info"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "profile_photo"
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: profilepic,
+          alt: ""
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "profile_user_info"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "profile_user_name"
@@ -1340,6 +1446,9 @@ var _nullSession = {
         errors: actions.errors
       });
 
+    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["CLEAR_ERRORS"]:
+      return _nullSession;
+
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
       return _nullSession;
 
@@ -1458,13 +1567,15 @@ var fetchAllUsers = function fetchAllUsers() {
     type: 'GET'
   });
 };
-var updateUser = function updateUser(user) {
+var updateUser = function updateUser(userId, user) {
+  console.log(userId);
+  console.log(user);
   return $.ajax({
     method: "PATCH",
-    url: "/api/users/".concat(user.id),
-    data: {
-      user: user
-    }
+    url: "/api/users/".concat(userId),
+    data: user,
+    contentType: false,
+    processData: false
   });
 };
 
