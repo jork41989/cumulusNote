@@ -62,16 +62,17 @@ export default class ProfilePhotoForm extends React.Component {
     const previewProfileBg = this.state.profileBackgroundUrl ? <div><img src={this.state.profileBackgroundUrl} className={"profileBgPreview"} /> <br/> </div>: null;
     return (
       <div className={"profile_photo_form_div"}>
-          <form onSubmit={this.handleSubmit}>
-            <p>Profile Photo</p>
-            {previewProfilePic}
-            
+        <form onSubmit={this.handleSubmit} className={"profile_photo_form_form"}>
+          <p className={"pFormL"}>Update Profile Photo</p>
+          <div className={"previewPDiv"}>{previewProfilePic}</div>
+          <p className={"pFormText"}>Your profile photo should fit within a 200px by 200px frame</p>
           <input type="file"
             onChange={(e) => this.handleFile(e, "profilePhoto")} className="profileEditInput"  />
             <br/>
 
-          <p>Background Photo</p>
-          {previewProfileBg}
+          <p className={"pFormL"}>Upload Background Photo</p>
+          <div className={"previewBgDiv"}>{previewProfileBg}</div>
+          <p className={"pFormText"}>Your profile background should be at least 255px high and be a maximum of 1000px wide</p>
           <input type="file"
             onChange={(e) => this.handleFile(e, "backgroundPhoto")} className="profileEditInput"  />
           <br />

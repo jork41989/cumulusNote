@@ -601,14 +601,27 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile_photo_form_div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.handleSubmit
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Profile Photo"), previewProfilePic, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onSubmit: this.handleSubmit,
+        className: "profile_photo_form_form"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "pFormL"
+      }, "Update Profile Photo"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "previewPDiv"
+      }, previewProfilePic), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "pFormText"
+      }, "Your profile photo should fit within a 200px by 200px frame"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "file",
         onChange: function onChange(e) {
           return _this3.handleFile(e, "profilePhoto");
         },
         className: "profileEditInput"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Background Photo"), previewProfileBg, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "pFormL"
+      }, "Upload Background Photo"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "previewBgDiv"
+      }, previewProfileBg), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "pFormText"
+      }, "Your profile background should be at least 255px high and be a maximum of 1000px wide"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "file",
         onChange: function onChange(e) {
           return _this3.handleFile(e, "backgroundPhoto");

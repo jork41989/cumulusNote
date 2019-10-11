@@ -3,18 +3,49 @@
   padding: 40px;
   border-radius: 5px;
   text-align: center;
-  width: 400px;
+  width: 450px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.profile_photo_form_form{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .profilePicPreview{
   width: 100px;
   height: 100px;
+  border-radius: 50%;
 }
-
+.previewPDiv{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: grey;
+  align-self: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 
 .profileBgPreview{
   width: 200px;
   height: 100px;
+  
+}
+.pFormText{
+  width: 400px;
+}
+
+.previewBgDiv{
+  width: 200px;
+  height: 100px;
+  background-color: grey;
+  align-self: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 // .profileEditInput {
@@ -37,13 +68,13 @@
    border-radius: 5px;
     background-color: #f50;
     color: white;
-    height: 25px;
+    height: 20px;
     font-size: 16px;
     width: 402px;
-   height: 35px;
    text-align: center;
    align-items: center;
    cursor: pointer;
+   margin-top: 10px;
 }
 
 input[type="file" i] {
