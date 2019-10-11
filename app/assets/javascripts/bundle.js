@@ -529,7 +529,7 @@ function (_React$Component) {
     _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
     _this.userId = _this.props.location.pathname[7];
     return _this;
-  } //
+  } // 
 
 
   _createClass(ProfilePhotoForm, [{
