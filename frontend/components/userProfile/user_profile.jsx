@@ -10,8 +10,10 @@ export default class UserProfile extends React.Component {
     this.userId = parseInt(this.props.match.params.id);
     this.state = {}
     
+    
   }
 
+  
   componentDidMount(e) {
     // this.poke = this.props.requestSinglePokemon(this.pokeId);
     this.props.requestSingleUser(this.userId).then(response => {
@@ -27,19 +29,23 @@ export default class UserProfile extends React.Component {
     this.props.requestSingleUser(this.userId).then(response => {
       this.setState({ user: response.user });
     }) 
-    } 
-    else if (prevProps.user.profile_photo != this.props.user.profile_photo) {
+    } else if (prevProps.user) {
+      if (prevProps.user.profile_photo) {
+     if (prevProps.user.profile_photo != this.props.user.profile_photo) {
       this.props.requestSingleUser(this.userId).then(response => {
         this.setState({ user: response.user });
       }
       )
-    } else if (prevProps.user.profile_background != this.props.user.profile_background) {
+      } else if (prevProps.user.profile_background) {
+        if (prevProps.user.profile_background != this.props.user.profile_background) {
       this.props.requestSingleUser(this.userId).then(response => {
         this.setState({ user: response.user });
       }
       )
     }
+  }}
   }
+}
   
   
   

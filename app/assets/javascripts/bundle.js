@@ -897,6 +897,7 @@ function (_React$Component) {
   }, {
     key: "setErrors",
     value: function setErrors() {
+      console.log(this.props.errors);
       var finError = [];
 
       if (this.props.errors) {
@@ -1110,18 +1111,24 @@ function (_React$Component) {
             user: response.user
           });
         });
-      } else if (prevProps.user.profile_photo != this.props.user.profile_photo) {
-        this.props.requestSingleUser(this.userId).then(function (response) {
-          _this3.setState({
-            user: response.user
-          });
-        });
-      } else if (prevProps.user.profile_background != this.props.user.profile_background) {
-        this.props.requestSingleUser(this.userId).then(function (response) {
-          _this3.setState({
-            user: response.user
-          });
-        });
+      } else if (prevProps.user) {
+        if (prevProps.user.profile_photo) {
+          if (prevProps.user.profile_photo != this.props.user.profile_photo) {
+            this.props.requestSingleUser(this.userId).then(function (response) {
+              _this3.setState({
+                user: response.user
+              });
+            });
+          } else if (prevProps.user.profile_background) {
+            if (prevProps.user.profile_background != this.props.user.profile_background) {
+              this.props.requestSingleUser(this.userId).then(function (response) {
+                _this3.setState({
+                  user: response.user
+                });
+              });
+            }
+          }
+        }
       }
     }
   }, {
