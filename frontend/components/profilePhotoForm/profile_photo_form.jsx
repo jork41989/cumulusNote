@@ -14,7 +14,7 @@ export default class ProfilePhotoForm extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleFile = this.handleFile.bind(this)
-    this.userId = this.props.location.pathname[7]
+    this.userId = this.props.location.pathname.split("/")[2]
   }
   // 
   handleSubmit(e) {

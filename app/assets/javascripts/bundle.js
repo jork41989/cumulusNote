@@ -527,7 +527,7 @@ function (_React$Component) {
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
-    _this.userId = _this.props.location.pathname[7];
+    _this.userId = _this.props.location.pathname.split("/")[2];
     return _this;
   } // 
 
