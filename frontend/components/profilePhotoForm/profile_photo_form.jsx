@@ -18,6 +18,7 @@ export default class ProfilePhotoForm extends React.Component {
   }
   
   handleSubmit(e) {
+    console.log("it worked!")
     e.preventDefault();
     const formData = new FormData();
     if (this.state.profilePhotoFile) {
@@ -58,9 +59,8 @@ export default class ProfilePhotoForm extends React.Component {
 
 
   render() {
-    console.log(this.state)
-    const previewProfilePic = this.state.profilePhotoUrl ? <img src={this.state.profilePhotoUrl}  className={"profilePicPreview"}/> : null;
-    const previewProfileBg = this.state.profileBackgroundUrl ? <img src={this.state.profileBackgroundUrl} className={"profileBgPreview"} /> : null;
+    const previewProfilePic = this.state.profilePhotoUrl ? <div> <img src={this.state.profilePhotoUrl} className={"profilePicPreview"} /> <br />  </div> : null;
+    const previewProfileBg = this.state.profileBackgroundUrl ? <div><img src={this.state.profileBackgroundUrl} className={"profileBgPreview"} /> <br/> </div>: null;
     return (
       <div className={"profile_photo_form_div"}>
           <form onSubmit={this.handleSubmit}>

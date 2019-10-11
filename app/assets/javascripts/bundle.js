@@ -534,6 +534,7 @@ function (_React$Component) {
   _createClass(ProfilePhotoForm, [{
     key: "handleSubmit",
     value: function handleSubmit(e) {
+      console.log("it worked!");
       e.preventDefault();
       var formData = new FormData();
 
@@ -589,15 +590,14 @@ function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      console.log(this.state);
-      var previewProfilePic = this.state.profilePhotoUrl ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      var previewProfilePic = this.state.profilePhotoUrl ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: this.state.profilePhotoUrl,
         className: "profilePicPreview"
-      }) : null;
-      var previewProfileBg = this.state.profileBackgroundUrl ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "  ") : null;
+      var previewProfileBg = this.state.profileBackgroundUrl ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: this.state.profileBackgroundUrl,
         className: "profileBgPreview"
-      }) : null;
+      }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), " ") : null;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile_photo_form_div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
@@ -900,7 +900,6 @@ function (_React$Component) {
       var finError = [];
 
       if (this.props.errors) {
-        console.log(this.props.errors);
         this.props.errors.forEach(function (error) {
           if (error === "F name can't be blank") {
             finError.push("Please enter a first name!");
@@ -912,7 +911,6 @@ function (_React$Component) {
         });
       }
 
-      console.log(finError);
       return finError;
     }
   }, {
@@ -1106,7 +1104,24 @@ function (_React$Component) {
     value: function componentDidUpdate(prevProps) {
       var _this3 = this;
 
+      console.log("Props");
+      console.log(this.props);
+      console.log("Prev Props");
+      console.log(prevProps);
+
       if (prevProps.match.params.id != this.props.match.params.id) {
+        this.props.requestSingleUser(this.userId).then(function (response) {
+          _this3.setState({
+            user: response.user
+          });
+        });
+      } else if (prevProps.user.profile_photo != this.props.user.profile_photo) {
+        this.props.requestSingleUser(this.userId).then(function (response) {
+          _this3.setState({
+            user: response.user
+          });
+        });
+      } else if (prevProps.user.profile_background != this.props.user.profile_background) {
         this.props.requestSingleUser(this.userId).then(function (response) {
           _this3.setState({
             user: response.user
@@ -1568,8 +1583,6 @@ var fetchAllUsers = function fetchAllUsers() {
   });
 };
 var updateUser = function updateUser(userId, user) {
-  console.log(userId);
-  console.log(user);
   return $.ajax({
     method: "PATCH",
     url: "/api/users/".concat(userId),

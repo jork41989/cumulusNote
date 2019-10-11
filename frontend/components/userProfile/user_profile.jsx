@@ -21,13 +21,31 @@ export default class UserProfile extends React.Component {
   }
 
   componentDidUpdate(prevProps){
+    console.log("Props")
+    console.log(this.props)
+    console.log("Prev Props")
+    console.log(prevProps)
+
     if (prevProps.match.params.id != this.props.match.params.id) {
     this.props.requestSingleUser(this.userId).then(response => {
-
       this.setState({ user: response.user });
-    })
+    }) 
+    } 
+    else if (prevProps.user.profile_photo != this.props.user.profile_photo) {
+      this.props.requestSingleUser(this.userId).then(response => {
+        this.setState({ user: response.user });
+      }
+      )
+    } else if (prevProps.user.profile_background != this.props.user.profile_background) {
+      this.props.requestSingleUser(this.userId).then(response => {
+        this.setState({ user: response.user });
+      }
+      )
+    }
   }
-  }
+  
+  
+  
 
   profileEdit(){
 

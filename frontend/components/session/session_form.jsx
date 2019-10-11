@@ -85,7 +85,6 @@ export default class SessionForm extends React.Component {
   setErrors() {
     const finError = []
     if (this.props.errors){ 
-      console.log(this.props.errors)
       this.props.errors.forEach( error => {
         if (error === "F name can't be blank") {
           finError.push("Please enter a first name!")
@@ -96,7 +95,7 @@ export default class SessionForm extends React.Component {
         }
     })
     }
-    console.log(finError)
+
     return finError 
     
   }
