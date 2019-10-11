@@ -534,7 +534,6 @@ function (_React$Component) {
   _createClass(ProfilePhotoForm, [{
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      console.log("it worked!");
       e.preventDefault();
       var formData = new FormData();
 
@@ -1103,11 +1102,6 @@ function (_React$Component) {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
       var _this3 = this;
-
-      console.log("Props");
-      console.log(this.props);
-      console.log("Prev Props");
-      console.log(prevProps);
 
       if (prevProps.match.params.id != this.props.match.params.id) {
         this.props.requestSingleUser(this.userId).then(function (response) {

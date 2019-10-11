@@ -18,7 +18,6 @@ export default class ProfilePhotoForm extends React.Component {
   }
   
   handleSubmit(e) {
-    console.log("it worked!")
     e.preventDefault();
     const formData = new FormData();
     if (this.state.profilePhotoFile) {

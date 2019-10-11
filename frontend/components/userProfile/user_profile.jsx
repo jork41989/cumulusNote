@@ -21,10 +21,7 @@ export default class UserProfile extends React.Component {
   }
 
   componentDidUpdate(prevProps){
-    console.log("Props")
-    console.log(this.props)
-    console.log("Prev Props")
-    console.log(prevProps)
+ 
 
     if (prevProps.match.params.id != this.props.match.params.id) {
     this.props.requestSingleUser(this.userId).then(response => {
