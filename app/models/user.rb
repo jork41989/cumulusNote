@@ -8,6 +8,8 @@ class User < ApplicationRecord
 
   has_one_attached :profile_photo
   has_one_attached :profile_background
+
+  has_many :songs, class_name: "Song", foreign_key: :user_id
   attr_reader :password
   #FeGrip
 

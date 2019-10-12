@@ -127,3 +127,16 @@
   margin-left: 10px;
   cursor: pointer;
 }
+
+.headerPhoto{
+  height: 26px;
+  width: 26px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+.headerCurrentUser{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}

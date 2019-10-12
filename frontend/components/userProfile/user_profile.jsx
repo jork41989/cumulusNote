@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, Route } from 'react-router-dom';
 import UserProfileContainer from './user_profile_container';
-
+import ProfileSongIndexContainer from '../profileSongs/profile_songs_index_container'
 
 
 export default class UserProfile extends React.Component {
@@ -87,6 +87,7 @@ export default class UserProfile extends React.Component {
         profilepic = window.profileP
       )
       return (
+        <div className={"profile"}>
         <div style={profileBg} className={'profile_background'}>
             <div className={"profile_info"}>
               <div className={"profile_photo"}>
@@ -100,6 +101,10 @@ export default class UserProfile extends React.Component {
             </div>
             
           </div>
+          <div>
+            <ProfileSongIndexContainer user = {this.state.user} />
+          </div>
+        </div>
       )
     } else {
       return (<div>
