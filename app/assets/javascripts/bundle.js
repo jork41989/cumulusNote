@@ -227,10 +227,10 @@ var receiveAllUserSongs = function receiveAllUserSongs(payload) {
   };
 };
 
-var receiveASong = function receiveASong(song) {
+var receiveASong = function receiveASong(payload) {
   return {
     type: RECEIVE_SINGLE_SONG,
-    song: song
+    payload: payload
   };
 };
 
@@ -887,8 +887,9 @@ __webpack_require__.r(__webpack_exports__);
   var song = _ref.song,
       user = _ref.user,
       removeASignleSong = _ref.removeASignleSong,
-      requestAllUserSongs = _ref.requestAllUserSongs;
+      currentUser = _ref.currentUser;
   var art;
+  var del;
 
   if (song.song_art) {
     art = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -901,22 +902,33 @@ __webpack_require__.r(__webpack_exports__);
     });
   }
 
+  if (currentUser) {
+    if (user.id === currentUser.id) {
+      del = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: function onClick() {
+          return removeASignleSong(song.id);
+        },
+        className: "removeSongProfile"
+      }, "X");
+    } else {
+      del = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
+    }
+  }
+
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "songDiv"
   }, art, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "songInfoDiv"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "songInfoDivOrg"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "songNameDiv"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
     to: "/songs/".concat(song.id)
-  }, song.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, user.f_name, " ", user.l_name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("audio", {
+  }, song.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, user.f_name, " ", user.l_name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, del)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("audio", {
     controls: true,
     src: song.song_mp3
-  }, "Your browser does not support the", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("code", null, "audio"), " element."))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    onClick: function onClick() {
-      return removeASignleSong(song.id);
-    }
-  }, "Delete Song"));
+  }, "Your browser does not support the", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("code", null, "audio"), " element."))));
 });
 
 /***/ }),
@@ -978,7 +990,7 @@ function (_React$Component) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
-      console.log(prevProps);
+      console.log(prevProps, this.props);
 
       if (this.props.user.id != prevProps.user.id) {
         this.props.requestAllUserSongs(this.props.user.id);
@@ -996,7 +1008,7 @@ function (_React$Component) {
             key: song.id,
             user: _this2.props.user,
             removeASignleSong: _this2.props.removeASignleSong,
-            requestAllUserSongs: _this2.props.requestAllUserSongs
+            currentUser: _this2.props.currentUser
           });
         });
       } else {
@@ -1006,7 +1018,6 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log(this.props);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.hasSongs());
     }
   }]);
@@ -1036,7 +1047,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
-    songs: state.entities.songs
+    songs: state.entities.songs,
+    currentUser: state.session.currentUser
   };
 };
 
@@ -1465,7 +1477,8 @@ function (_React$Component) {
       songUrl: null,
       songArtFile: null,
       songArtUrl: null,
-      loading: false
+      loading: false,
+      songError: ""
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
@@ -1474,6 +1487,19 @@ function (_React$Component) {
   }
 
   _createClass(SongForm, [{
+    key: "renderErrors",
+    value: function renderErrors() {
+      if (Object.values(this.props.errors).length) {
+        this.state.loading = false;
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.errors.map(function (error, i) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+            key: "error-".concat(i),
+            className: "formError"
+          }, error);
+        }));
+      }
+    }
+  }, {
     key: "refresh",
     value: function refresh() {
       this.props.history.push("/users/".concat(this.props.currentUser.id));
@@ -1486,18 +1512,21 @@ function (_React$Component) {
       formData.append('song[name]', this.state.name);
       formData.append('song[user_id]', this.props.currentUser.id);
 
-      if (this.state.songFile) {
-        formData.append('song[song_mp3]', this.state.songFile);
-      }
-
       if (this.state.songArtFile) {
         formData.append('song[song_art]', this.state.songArtFile);
       }
 
-      this.setState({
-        loading: true
-      });
-      this.props.processForm(formData).then(this.refresh);
+      if (this.state.songFile) {
+        formData.append('song[song_mp3]', this.state.songFile);
+        this.setState({
+          loading: true
+        });
+        this.props.processForm(formData).then(this.refresh);
+      } else {
+        this.setState({
+          songError: "Please ensure you have a title and songfile!"
+        });
+      }
     }
   }, {
     key: "update",
@@ -1568,6 +1597,8 @@ function (_React$Component) {
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           "class": "cssload-square"
         }))));
+      } else {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
       }
     }
   }, {
@@ -1591,9 +1622,9 @@ function (_React$Component) {
         className: "uploadFormDiv"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+      }, this.renderErrors(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
         className: "songInfoHeader"
-      }, "Song Upload!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Song Upload!"), this.state.songError, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "songFileDiv"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "file",
@@ -1672,9 +1703,11 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     name: "",
     user_id: ""
   };
+  var errors = state.errors.songs.errors;
   return {
     songInfo: songInfo,
-    currentUser: state.session.currentUser
+    currentUser: state.session.currentUser,
+    errors: errors
   };
 };
 
@@ -1750,17 +1783,30 @@ function (_React$Component) {
       // this.poke = this.props.requestSinglePokemon(this.pokeId);
       this.props.requestSingleSong(this.songId).then(function (response) {
         _this2.setState({
-          song: response.song
+          song: response.payload.song,
+          user: response.payload.user
         });
       });
     }
   }, {
     key: "render",
     value: function render() {
-      console.log(this.state.song);
+      var art;
+      console.log(this.state.user);
 
       if (this.state.song) {
         if (Object.values(this.state.song).length) {
+          if (this.state.song.song_art) {
+            art = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+              src: this.state.song.song_art,
+              className: "songShowArt"
+            });
+          } else {
+            art = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              className: "songShowArt"
+            });
+          }
+
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "contentDiv"
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1768,10 +1814,10 @@ function (_React$Component) {
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "songShowInfoArt"
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "songShowArt"
-          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "songShowplayback"
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "songShowInfo"
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, this.state.song.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, this.state.song.userId)))));
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, this.state.song.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, this.state.user.f_name, " ", this.state.user.l_name, " "))), art)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "comments go here!"));
         }
       } else {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "no song ");
@@ -1812,7 +1858,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
 
   return {
     song: song,
-    errors: state.errors
+    errors: state.errors,
+    currentUser: state.session.currentUser
   };
 };
 
@@ -2137,10 +2184,13 @@ var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _sessions_errors_reducers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sessions_errors_reducers */ "./frontend/reducers/sessions_errors_reducers.js");
+/* harmony import */ var _song_errors_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./song_errors_reducer */ "./frontend/reducers/song_errors_reducer.js");
+
 
 
 var errorsReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  session: _sessions_errors_reducers__WEBPACK_IMPORTED_MODULE_1__["default"]
+  session: _sessions_errors_reducers__WEBPACK_IMPORTED_MODULE_1__["default"],
+  songs: _song_errors_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (errorsReducer);
 
@@ -2278,6 +2328,44 @@ var _nullSession = {
 
 /***/ }),
 
+/***/ "./frontend/reducers/song_errors_reducer.js":
+/*!**************************************************!*\
+  !*** ./frontend/reducers/song_errors_reducer.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_songs_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/songs_actions */ "./frontend/actions/songs_actions.js");
+
+var _nullSession = {
+  errors: []
+};
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _nullSession;
+  var actions = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (actions.type) {
+    case _actions_songs_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SONG_ERRORS"]:
+      return Object.assign({}, {
+        errors: actions.errors
+      });
+
+    case _actions_songs_actions__WEBPACK_IMPORTED_MODULE_0__["CLEAR_ERRORS"]:
+      return _nullSession;
+
+    case _actions_songs_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SINGLE_SONG"]:
+      return _nullSession;
+
+    default:
+      return state;
+  }
+});
+
+/***/ }),
+
 /***/ "./frontend/reducers/songs_reducer.js":
 /*!********************************************!*\
   !*** ./frontend/reducers/songs_reducer.js ***!
@@ -2298,10 +2386,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
   switch (action.type) {
     case _actions_songs_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SINGLE_SONG"]:
-      return Object.assign({}, state, _defineProperty({}, action.song.id, action.song));
+      return Object.assign({}, state, _defineProperty({}, action.payload.song.id, action.payload.song));
 
     case _actions_songs_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_USER_SONGS"]:
-      return Object.assign({}, state, action.songs);
+      return action.songs || {};
 
     case _actions_songs_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_SINGLE_SONG"]:
       var newState = Object.assign({}, state);
@@ -2345,7 +2433,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var _actions_users_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/users_actions */ "./frontend/actions/users_actions.js");
+/* harmony import */ var _actions_songs_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/songs_actions */ "./frontend/actions/songs_actions.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -2360,6 +2450,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     case _actions_users_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_SINGLE_USER"]:
       return Object.assign({}, state, _defineProperty({}, action.user.id, action.user));
+
+    case _actions_songs_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_SINGLE_SONG"]:
+      return Object.assign({}, state, _defineProperty({}, action.payload.user.id, action.payload.user));
 
     case _actions_users_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_ALL_USERS"]:
       return action.users;

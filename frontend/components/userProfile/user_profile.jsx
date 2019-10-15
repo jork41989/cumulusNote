@@ -102,7 +102,7 @@ export default class UserProfile extends React.Component {
             
           </div>
           <div>
-            <ProfileSongIndexContainer user = {this.state.user} />
+            <ProfileSongIndexContainer user={this.state.user} />
           </div>
         </div>
       )

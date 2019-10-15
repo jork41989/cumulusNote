@@ -12,7 +12,8 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     song: song,
-    errors: state.errors
+    errors: state.errors,
+    currentUser: state.session.currentUser
   }
 
 }

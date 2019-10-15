@@ -10,13 +10,32 @@ export default class SongForm extends React.Component {
       songUrl: null,
       songArtFile: null,
       songArtUrl: null,
-      loading: false
+      loading: false,
+      songError: ""
     };
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleFile = this.handleFile.bind(this)
     this.refresh = this.refresh.bind(this)
 
-  
+    
+  }
+
+  renderErrors() {
+    if (Object.values(this.props.errors).length){
+        this.state.loading = false;
+          return (
+            <ul>
+              {this.props.errors.map((error, i) => (
+
+                <li key={`error-${i}`} className="formError">
+                  {error}
+                </li>
+              ))}
+
+            </ul>
+
+          );
+        }
   }
 
   refresh(){
@@ -28,14 +47,18 @@ export default class SongForm extends React.Component {
     const formData = new FormData();
       formData.append('song[name]', this.state.name);
       formData.append('song[user_id]', this.props.currentUser.id);
-    if (this.state.songFile) {
-      formData.append('song[song_mp3]', this.state.songFile);
-    }
-    if (this.state.songArtFile){
+    if (this.state.songArtFile) {
       formData.append('song[song_art]', this.state.songArtFile);
     }
-    this.setState({loading: true})
-    this.props.processForm(formData).then(this.refresh);
+    if (this.state.songFile) {
+      formData.append('song[song_mp3]', this.state.songFile);
+      this.setState({ loading: true })
+      this.props.processForm(formData).then(this.refresh);
+    } else {
+      this.setState({songError: "Please ensure you have a title and songfile!"})
+    }
+   
+    
   }
 
   update(feild) {
@@ -85,6 +108,10 @@ export default class SongForm extends React.Component {
             </div>
           </div>
           </div> )
+    } else {
+      return (
+        <div></div>
+      )
     }
   }
   render(){
@@ -105,9 +132,11 @@ export default class SongForm extends React.Component {
       <div className={"contentDiv"}>
       <div className={"uploadFormDiv"}>
         <form onSubmit={this.handleSubmit} >
-
+            {this.renderErrors()}
+            
           <div>
             <h2 className={"songInfoHeader"}>Song Upload!</h2>
+              {this.state.songError}
             <div className={"songFileDiv"}>
 
             

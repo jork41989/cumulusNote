@@ -13,27 +13,40 @@ export default class SongShow extends React.Component {
     // this.poke = this.props.requestSinglePokemon(this.pokeId);
     this.props.requestSingleSong(this.songId).then(response => {
 
-      this.setState({ song: response.song });
+      this.setState({ song: response.payload.song, user: response.payload.user });
     })
   }
 
   render(){
-    console.log(this.state.song)
+    let art;
+    console.log(this.state.user)
+    
     if (this.state.song){
+      
     if (Object.values(this.state.song).length){
+      if (this.state.song.song_art) {
+        art = <img src={this.state.song.song_art} className={"songShowArt"} />
+      } else {
+        art = <div className={"songShowArt"}></div>
+      }
       return (
         <div className={"contentDiv"}>
 
           <div className={"songShowDiv"}>
             <div className="songShowInfoArt">
-                <div className={"songShowArt"}>
-
+              <div className="songShowplayback">
+                <div className="songShowInfo">
+                  <h3>{this.state.song.name}</h3>
+                  <h4>{this.state.user.f_name} {this.state.user.l_name} </h4>
                 </div>
-              <div className="songShowInfo">
-                <h3>{this.state.song.name}</h3>
-                <h4>{this.state.song.userId}</h4>
               </div>
+              
+              {art}
             </div>
+          </div>
+
+          <div>
+            comments go here!
           </div>
         </div>
       )

@@ -4,9 +4,11 @@ import {createAsong} from '../../actions/songs_actions';
 
 const mapStateToProps = (state, ownProps) => {
   let songInfo = {name: "", user_id:""};
+  let errors = state.errors.songs.errors;
   return {
     songInfo,
-    currentUser: state.session.currentUser
+    currentUser: state.session.currentUser,
+    errors: errors
   }
 }
 

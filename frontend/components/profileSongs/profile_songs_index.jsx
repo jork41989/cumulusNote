@@ -6,15 +6,16 @@ export default class ProfileSongIndex extends React.Component{
     super(props)
     
     this.hasSongs = this.hasSongs.bind(this)
+    
 
   }
   componentDidMount() {
     this.props.requestAllUserSongs(this.props.user.id)
+
   }
 
   componentDidUpdate(prevProps){
-    console.log(prevProps)
-
+    console.log(prevProps, this.props)
     if(this.props.user.id != prevProps.user.id){
       this.props.requestAllUserSongs(this.props.user.id)
       }
@@ -29,7 +30,7 @@ export default class ProfileSongIndex extends React.Component{
         Object.values(this.props.songs).map(song => (
     
           
-          <ProfileSongIndexItem song={song} key={song.id} user={this.props.user} removeASignleSong={this.props.removeASignleSong} requestAllUserSongs={this.props.requestAllUserSongs}/>
+          <ProfileSongIndexItem song={song} key={song.id} user={this.props.user} removeASignleSong={this.props.removeASignleSong} currentUser={this.props.currentUser}/>
         ))
       )} else {
         return (
@@ -42,7 +43,6 @@ export default class ProfileSongIndex extends React.Component{
 
 
   render() {
-    console.log(this.props)
     return (
       <div>
         

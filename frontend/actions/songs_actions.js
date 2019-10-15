@@ -10,9 +10,9 @@ const receiveAllUserSongs = payload => ({
   songs: payload.songs
 })
 
-const receiveASong = song => ({
+const receiveASong = payload => ({
   type: RECEIVE_SINGLE_SONG,
-  song
+  payload
 })
 
 

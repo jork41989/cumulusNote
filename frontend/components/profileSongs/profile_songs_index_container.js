@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    songs: state.entities.songs
+    songs: state.entities.songs,
+    currentUser: state.session.currentUser
   }
 }
 
