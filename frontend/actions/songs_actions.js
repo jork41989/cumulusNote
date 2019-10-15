@@ -5,9 +5,9 @@ export const RECEIVE_SINGLE_SONG = "RECEIVE_SINGLE_SONG";
 export const RECEIVE_SONG_ERRORS = "RECEIVE_SONG_ERRORS";
 export const REMOVE_SINGLE_SONG = "REMOVE_SINGLE_SONG"
 export const CLEAR_ERRORS = "CLEAR_ERRORS"
-const receiveAllUserSongs = songs => ({
+const receiveAllUserSongs = payload => ({
   type: RECEIVE_ALL_USER_SONGS,
-  songs
+  songs: payload.songs
 })
 
 const receiveASong = song => ({
@@ -20,9 +20,10 @@ const receiveErrorsSong = errors => ({
   type: RECEIVE_SONG_ERRORS,
   errors
 });
-const removeASong = songId => {
- type: REMOVE_SINGLE_SONG
-}
+const removeASong = song => ({
+ type: REMOVE_SINGLE_SONG,
+ song
+})
 
 export const clearErrors = () => ({
   type: CLEAR_ERRORS,
@@ -53,6 +54,6 @@ export const createAsong = song => dispatch => {
     errors => dispatch(receiveErrorsSong(errors.responseJSON)));
 };
 
-export const removeASignleSong = songId => dispatch => {
-  return removeSong(songId).then(songId => dispatch(removeASong()))
+export const removeASignleSong = song => dispatch => {
+  return removeSong(song).then(song => dispatch(removeASong(song)))
 }

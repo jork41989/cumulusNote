@@ -4,27 +4,32 @@ import ProfileSongIndexItem from './profile_song_index_item';
 export default class ProfileSongIndex extends React.Component{
   constructor(props){
     super(props)
-    this.state = {
-      songs: null
-    }
+    
     this.hasSongs = this.hasSongs.bind(this)
 
   }
   componentDidMount() {
-    console.log()
-    this.props.requestAllUserSongs(this.props.user.id).then( songs  => 
-      {console.log(songs)
-      this.setState({songs: songs.songs})})
+    this.props.requestAllUserSongs(this.props.user.id)
   }
 
+  componentDidUpdate(prevProps){
+    console.log(prevProps)
+
+    if(this.props.user.id != prevProps.user.id){
+      this.props.requestAllUserSongs(this.props.user.id)
+      }
+    } 
+    
+  
+
   hasSongs () {
-    if (this.state.songs) {
+    if (Object.values(this.props.songs).length) {
   
       return (
-        Object.values(this.state.songs).map(song => (
+        Object.values(this.props.songs).map(song => (
     
           
-          <ProfileSongIndexItem song={song}/>
+          <ProfileSongIndexItem song={song} key={song.id} user={this.props.user} removeASignleSong={this.props.removeASignleSong} requestAllUserSongs={this.props.requestAllUserSongs}/>
         ))
       )} else {
         return (
@@ -34,11 +39,13 @@ export default class ProfileSongIndex extends React.Component{
     
   }
 
+
+
   render() {
-    
+    console.log(this.props)
     return (
       <div>
-  
+        
         {this.hasSongs()}
       </div>
     )

@@ -8,11 +8,15 @@ export default class SongForm extends React.Component {
       user_id: '',
       songFile: null,
       songUrl: null,
+      songArtFile: null,
+      songArtUrl: null,
       loading: false
     };
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleFile = this.handleFile.bind(this)
     this.refresh = this.refresh.bind(this)
+
+  
   }
 
   refresh(){
@@ -25,9 +29,10 @@ export default class SongForm extends React.Component {
       formData.append('song[name]', this.state.name);
       formData.append('song[user_id]', this.props.currentUser.id);
     if (this.state.songFile) {
-
       formData.append('song[song_mp3]', this.state.songFile);
-
+    }
+    if (this.state.songArtFile){
+      formData.append('song[song_art]', this.state.songArtFile);
     }
     this.setState({loading: true})
     this.props.processForm(formData).then(this.refresh);
@@ -39,42 +44,107 @@ export default class SongForm extends React.Component {
     }
   }
 
-  handleFile(e) {
+  handleFile(e, type) {
     const file = e.currentTarget.files[0];
     const fileReader = new FileReader();
+    let obj;
+    let el = document.getElementById(type.concat("Label"))
     fileReader.onloadend = () => {
-      this.setState({ songFile: file, songUrl: fileReader.result });
+      switch (type) {
+        case 'songFile':
+          obj = { songFile: file, songUrl: fileReader.result };
+          break;
+        case 'songArt':
+          obj = { songArtFile: file, songArtUrl: fileReader.result };
+          break;
+        default:
+          return null;
+      }
+      
+      this.setState(obj);
+      
     };
     if (file) {
       fileReader.readAsDataURL(file);
+      let fname = file.name;
+      el.innerHTML = fname.substring(fname.length - 20, fname.length);
     }
   }
 
   loadingIcon (){
     if (this.state.loading){
-      return(<div>Loading!</div>)
+      return (<div className={"loadingDiv"}>
+        <div className={"loadingDivChild"}>
+        <div class="cssload-wrapper">
+          
+              <div class="cssload-square"></div>
+              <div class="cssload-square"></div>
+              <div class="cssload-square"></div>
+              <div class="cssload-square"></div>
+              <div class="cssload-square"></div>
+            </div>
+          </div>
+          </div> )
     }
   }
   render(){
 
+    let songArtBg;
+      if (this.state.songArtUrl) {
+        songArtBg = {
+          backgroundImage: `url('${this.state.songArtUrl}')`
+        }
+      } else {
+        songArtBg = {
+
+        }
+      }
+
     
     return (
+      <div className={"contentDiv"}>
       <div className={"uploadFormDiv"}>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} >
 
           <div>
-            <input type="file" onChange={(e) => this.handleFile(e)}/>
-          </div>
-          <input type="text"
-            value={this.state.name}
-            onChange={this.update('name')}
-            className="login-input"
-            placeholder="Song Name"
-          />
+            <h2 className={"songInfoHeader"}>Song Upload!</h2>
+            <div className={"songFileDiv"}>
 
-          <input className="session-submit" type="submit" value={this.props.formType} />
+            
+            <input type="file" onChange={(e) => this.handleFile(e, "songFile")} accept="audio/*" name="songMp3" id="songMp3" className={"songMp3file"}/>
+              <label htmlFor="songMp3" id={"songFileLabel"}>🎵 Upload your Song MP3 here!</label>
+            </div>
+          
+          </div>
+          <div className={"songDetailsDiv"}>
+            
+            <div>
+              <h3 className={"songInfoHeader"}>Song information!</h3>
+              <div className={"songArtUploadDiv"}>
+                <div className={"previewSongArtDiv"} style={songArtBg}>
+                  <input type="file" accept="image/*" onChange={(e) => this.handleFile(e, "songArt")} name="songArt" id="songArt" className={"songArtfile"}/>
+                  <label htmlFor="songArt" id={"songArtLabel"}>📁 Upload Song Art!</label>
+                </div>
+                <input type="text"
+                  value={this.state.name}
+                  onChange={this.update('name')}
+                  className="songNameInput"
+                  placeholder="Song Name"
+                />
+              </div>
+            </div>
+          </div>
+
+
+          <div className={"submitDiv"}>
+           <input className="song-submit" type="submit" value={"Upload your Song!"} />
+          </div>
         </form>
         {this.loadingIcon()}
+       
+
+      
+      </div>
       </div>
     )
   }

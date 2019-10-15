@@ -220,10 +220,10 @@ var RECEIVE_SONG_ERRORS = "RECEIVE_SONG_ERRORS";
 var REMOVE_SINGLE_SONG = "REMOVE_SINGLE_SONG";
 var CLEAR_ERRORS = "CLEAR_ERRORS";
 
-var receiveAllUserSongs = function receiveAllUserSongs(songs) {
+var receiveAllUserSongs = function receiveAllUserSongs(payload) {
   return {
     type: RECEIVE_ALL_USER_SONGS,
-    songs: songs
+    songs: payload.songs
   };
 };
 
@@ -241,8 +241,11 @@ var receiveErrorsSong = function receiveErrorsSong(errors) {
   };
 };
 
-var removeASong = function removeASong(songId) {
-  type: REMOVE_SINGLE_SONG;
+var removeASong = function removeASong(song) {
+  return {
+    type: REMOVE_SINGLE_SONG,
+    song: song
+  };
 };
 
 var clearErrors = function clearErrors() {
@@ -281,10 +284,10 @@ var createAsong = function createAsong(song) {
     });
   };
 };
-var removeASignleSong = function removeASignleSong(songId) {
+var removeASignleSong = function removeASignleSong(song) {
   return function (dispatch) {
-    return Object(_util_song_api_util__WEBPACK_IMPORTED_MODULE_0__["removeSong"])(songId).then(function (songId) {
-      return dispatch(removeASong());
+    return Object(_util_song_api_util__WEBPACK_IMPORTED_MODULE_0__["removeSong"])(song).then(function (song) {
+      return dispatch(removeASong(song));
     });
   };
 };
@@ -366,6 +369,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modal_modal__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modal/modal */ "./frontend/components/modal/modal.jsx");
 /* harmony import */ var _userProfile_user_profile_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./userProfile/user_profile_container */ "./frontend/components/userProfile/user_profile_container.js");
 /* harmony import */ var _songForm_song_form_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./songForm/song_form_container */ "./frontend/components/songForm/song_form_container.js");
+/* harmony import */ var _songShow_song_show_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./songShow/song_show_container */ "./frontend/components/songShow/song_show_container.js");
+
 
 
 
@@ -396,6 +401,9 @@ var App = function App() {
     path: "/users/:id",
     component: _userProfile_user_profile_container__WEBPACK_IMPORTED_MODULE_7__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    path: "/songs/:id",
+    component: _songShow_song_show_container__WEBPACK_IMPORTED_MODULE_9__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_5__["AuthRoute"], {
     path: "/createSong",
     component: _songForm_song_form_container__WEBPACK_IMPORTED_MODULE_8__["default"]
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modal_modal__WEBPACK_IMPORTED_MODULE_6__["default"], null));
@@ -459,7 +467,8 @@ __webpack_require__.r(__webpack_exports__);
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hgroup", {
       className: "header-group"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
-      to: '/createSong'
+      to: '/createSong',
+      className: "upload-a-button"
     }, " Upload a Song"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
       to: "/users/".concat(currentUser.id),
       className: "headerCurrentUser"
@@ -684,6 +693,7 @@ function (_React$Component) {
       var file = e.currentTarget.files[0];
       var fileReader = new FileReader();
       var obj;
+      var el = document.getElementById(type.concat("Label"));
 
       fileReader.onloadend = function () {
         switch (type) {
@@ -710,6 +720,8 @@ function (_React$Component) {
 
       if (file) {
         fileReader.readAsDataURL(file);
+        var fname = file.name;
+        el.innerHTML = fname.substring(fname.length - 20, fname.length);
       }
     }
   }, {
@@ -717,10 +729,25 @@ function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      var previewProfilePic = this.state.profilePhotoUrl ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: this.state.profilePhotoUrl,
-        className: "profilePicPreview"
-      }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "  ") : null;
+      var previewbackgroundPhoto;
+      var previewProfilePic;
+
+      if (this.state.profilePhotoUrl) {
+        previewProfilePic = {
+          backgroundImage: "url('".concat(this.state.profilePhotoUrl, "')")
+        };
+      } else {
+        previewProfilePic = {};
+      }
+
+      if (this.state.profileBackgroundUrl) {
+        previewbackgroundPhoto = {
+          backgroundImage: "url('".concat(this.state.profileBackgroundUrl, "')")
+        };
+      } else {
+        previewbackgroundPhoto = {};
+      }
+
       var previewProfileBg = this.state.profileBackgroundUrl ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: this.state.profileBackgroundUrl,
         className: "profileBgPreview"
@@ -730,31 +757,55 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit,
         className: "profile_photo_form_form"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "profilePhoto",
+        id: "profilePhoto"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "pFormL"
       }, "Update Profile Photo"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "previewPDiv"
-      }, previewProfilePic), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "pFormText"
-      }, "Your profile photo should fit within a 200px by 200px frame"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "profilePhotoUploadDiv"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "previewprofilePhotoDiv",
+        style: previewProfilePic
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "file",
+        accept: "image/*",
         onChange: function onChange(e) {
           return _this3.handleFile(e, "profilePhoto");
         },
-        className: "profileEditInput"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        name: "profilePhotoImg",
+        id: "profilePhotoImg",
+        className: "profilePhotofile"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "profilePhotoImg",
+        id: "profilePhotoLabel"
+      }, "\uD83D\uDCF8 Upload Profile Photo!"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "pFormText"
+      }, "Your profile photo should fit within a 200px by 200px frame")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "backgroundPhoto",
+        id: "backgroundPhoto"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "pFormL"
       }, "Upload Background Photo"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "previewBgDiv"
-      }, previewProfileBg), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "pFormText"
-      }, "Your profile background should be at least 255px high and be a maximum of 1000px wide"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "backgroundPhotoUploadDiv"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "previewbackgroundPhotoDiv",
+        style: previewbackgroundPhoto
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "file",
+        accept: "image/*",
         onChange: function onChange(e) {
           return _this3.handleFile(e, "backgroundPhoto");
         },
-        className: "profileEditInput"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        name: "backgroundPhotoImg",
+        id: "backgroundPhotoImg",
+        className: "backgroundPhotofile"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "backgroundPhotoImg",
+        id: "backgroundPhotoLabel"
+      }, "\uD83D\uDDBC\uFE0F Upload Profile Background!"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "pFormText"
+      }, "Your profile background should be at least 255px high and be a maximum of 1000px wide"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "submit",
         value: "Update Profile photos",
         className: "session-submit"
@@ -829,10 +880,43 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
 
 /* harmony default export */ __webpack_exports__["default"] = (function (_ref) {
-  var song = _ref.song;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, song.name);
+  var song = _ref.song,
+      user = _ref.user,
+      removeASignleSong = _ref.removeASignleSong,
+      requestAllUserSongs = _ref.requestAllUserSongs;
+  var art;
+
+  if (song.song_art) {
+    art = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      src: song.song_art,
+      className: "songArt"
+    });
+  } else {
+    art = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "songArt"
+    });
+  }
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "songDiv"
+  }, art, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "songInfoDiv"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "songNameDiv"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+    to: "/songs/".concat(song.id)
+  }, song.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, user.f_name, " ", user.l_name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("audio", {
+    controls: true,
+    src: song.song_mp3
+  }, "Your browser does not support the", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("code", null, "audio"), " element."))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: function onClick() {
+      return removeASignleSong(song.id);
+    }
+  }, "Delete Song"));
 });
 
 /***/ }),
@@ -882,9 +966,6 @@ function (_React$Component) {
     _classCallCheck(this, ProfileSongIndex);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(ProfileSongIndex).call(this, props));
-    _this.state = {
-      songs: null
-    };
     _this.hasSongs = _this.hasSongs.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -892,24 +973,30 @@ function (_React$Component) {
   _createClass(ProfileSongIndex, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this2 = this;
+      this.props.requestAllUserSongs(this.props.user.id);
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      console.log(prevProps);
 
-      console.log();
-      this.props.requestAllUserSongs(this.props.user.id).then(function (songs) {
-        console.log(songs);
-
-        _this2.setState({
-          songs: songs.songs
-        });
-      });
+      if (this.props.user.id != prevProps.user.id) {
+        this.props.requestAllUserSongs(this.props.user.id);
+      }
     }
   }, {
     key: "hasSongs",
     value: function hasSongs() {
-      if (this.state.songs) {
-        return Object.values(this.state.songs).map(function (song) {
+      var _this2 = this;
+
+      if (Object.values(this.props.songs).length) {
+        return Object.values(this.props.songs).map(function (song) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_song_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
-            song: song
+            song: song,
+            key: song.id,
+            user: _this2.props.user,
+            removeASignleSong: _this2.props.removeASignleSong,
+            requestAllUserSongs: _this2.props.requestAllUserSongs
           });
         });
       } else {
@@ -919,6 +1006,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      console.log(this.props);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.hasSongs());
     }
   }]);
@@ -944,18 +1032,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 
 
- // const mapStateToProps = (state, ownProps) => {
-// }
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  return {
+    songs: state.entities.songs
+  };
+};
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
   return {
     requestAllUserSongs: function requestAllUserSongs(userId) {
       return dispatch(Object(_actions_songs_actions__WEBPACK_IMPORTED_MODULE_0__["requestAllUserSongs"])(userId));
+    },
+    removeASignleSong: function removeASignleSong(songId) {
+      return dispatch(Object(_actions_songs_actions__WEBPACK_IMPORTED_MODULE_0__["removeASignleSong"])(songId));
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(null, mapDispatchToProps)(_profile_songs_index__WEBPACK_IMPORTED_MODULE_1__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, mapDispatchToProps)(_profile_songs_index__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 
@@ -1367,6 +1463,8 @@ function (_React$Component) {
       user_id: '',
       songFile: null,
       songUrl: null,
+      songArtFile: null,
+      songArtUrl: null,
       loading: false
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
@@ -1392,6 +1490,10 @@ function (_React$Component) {
         formData.append('song[song_mp3]', this.state.songFile);
       }
 
+      if (this.state.songArtFile) {
+        formData.append('song[song_art]', this.state.songArtFile);
+      }
+
       this.setState({
         loading: true
       });
@@ -1408,28 +1510,64 @@ function (_React$Component) {
     }
   }, {
     key: "handleFile",
-    value: function handleFile(e) {
+    value: function handleFile(e, type) {
       var _this3 = this;
 
       var file = e.currentTarget.files[0];
       var fileReader = new FileReader();
+      var obj;
+      var el = document.getElementById(type.concat("Label"));
 
       fileReader.onloadend = function () {
-        _this3.setState({
-          songFile: file,
-          songUrl: fileReader.result
-        });
+        switch (type) {
+          case 'songFile':
+            obj = {
+              songFile: file,
+              songUrl: fileReader.result
+            };
+            break;
+
+          case 'songArt':
+            obj = {
+              songArtFile: file,
+              songArtUrl: fileReader.result
+            };
+            break;
+
+          default:
+            return null;
+        }
+
+        _this3.setState(obj);
       };
 
       if (file) {
         fileReader.readAsDataURL(file);
+        var fname = file.name;
+        el.innerHTML = fname.substring(fname.length - 20, fname.length);
       }
     }
   }, {
     key: "loadingIcon",
     value: function loadingIcon() {
       if (this.state.loading) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Loading!");
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "loadingDiv"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "loadingDivChild"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          "class": "cssload-wrapper"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          "class": "cssload-square"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          "class": "cssload-square"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          "class": "cssload-square"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          "class": "cssload-square"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          "class": "cssload-square"
+        }))));
       }
     }
   }, {
@@ -1437,26 +1575,72 @@ function (_React$Component) {
     value: function render() {
       var _this4 = this;
 
+      var songArtBg;
+
+      if (this.state.songArtUrl) {
+        songArtBg = {
+          backgroundImage: "url('".concat(this.state.songArtUrl, "')")
+        };
+      } else {
+        songArtBg = {};
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "contentDiv"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "uploadFormDiv"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+        className: "songInfoHeader"
+      }, "Song Upload!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "songFileDiv"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "file",
         onChange: function onChange(e) {
-          return _this4.handleFile(e);
-        }
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          return _this4.handleFile(e, "songFile");
+        },
+        accept: "audio/*",
+        name: "songMp3",
+        id: "songMp3",
+        className: "songMp3file"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "songMp3",
+        id: "songFileLabel"
+      }, "\uD83C\uDFB5 Upload your Song MP3 here!"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "songDetailsDiv"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        className: "songInfoHeader"
+      }, "Song information!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "songArtUploadDiv"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "previewSongArtDiv",
+        style: songArtBg
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "file",
+        accept: "image/*",
+        onChange: function onChange(e) {
+          return _this4.handleFile(e, "songArt");
+        },
+        name: "songArt",
+        id: "songArt",
+        className: "songArtfile"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "songArt",
+        id: "songArtLabel"
+      }, "\uD83D\uDCC1 Upload Song Art!")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.name,
         onChange: this.update('name'),
-        className: "login-input",
+        className: "songNameInput",
         placeholder: "Song Name"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        className: "session-submit",
+      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "submitDiv"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "song-submit",
         type: "submit",
-        value: this.props.formType
-      })), this.loadingIcon());
+        value: "Upload your Song!"
+      }))), this.loadingIcon()));
     }
   }]);
 
@@ -1503,6 +1687,145 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_song_form__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/songShow/song_show.jsx":
+/*!****************************************************!*\
+  !*** ./frontend/components/songShow/song_show.jsx ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SongShow; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _song_show_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./song_show_container */ "./frontend/components/songShow/song_show_container.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+var SongShow =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(SongShow, _React$Component);
+
+  function SongShow(props) {
+    var _this;
+
+    _classCallCheck(this, SongShow);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(SongShow).call(this, props));
+    _this.songId = parseInt(_this.props.match.params.id);
+    _this.state = {};
+    return _this;
+  }
+
+  _createClass(SongShow, [{
+    key: "componentDidMount",
+    value: function componentDidMount(e) {
+      var _this2 = this;
+
+      // this.poke = this.props.requestSinglePokemon(this.pokeId);
+      this.props.requestSingleSong(this.songId).then(function (response) {
+        _this2.setState({
+          song: response.song
+        });
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      console.log(this.state.song);
+
+      if (this.state.song) {
+        if (Object.values(this.state.song).length) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "contentDiv"
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "songShowDiv"
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "songShowInfoArt"
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "songShowArt"
+          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "songShowInfo"
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, this.state.song.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, this.state.song.userId)))));
+        }
+      } else {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "no song ");
+      }
+    }
+  }]);
+
+  return SongShow;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+
+
+/***/ }),
+
+/***/ "./frontend/components/songShow/song_show_container.js":
+/*!*************************************************************!*\
+  !*** ./frontend/components/songShow/song_show_container.js ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_songs_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/songs_actions */ "./frontend/actions/songs_actions.js");
+/* harmony import */ var _song_show__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./song_show */ "./frontend/components/songShow/song_show.jsx");
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var songId = parseInt(ownProps.match.params.id);
+  var song = state.entities.songs[songId];
+
+  if (song) {
+    song = Object.assign({}, song);
+  }
+
+  return {
+    song: song,
+    errors: state.errors
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
+  var songId = parseInt(ownProps.match.params.id);
+  return {
+    requestSingleSong: function requestSingleSong() {
+      return dispatch(Object(_actions_songs_actions__WEBPACK_IMPORTED_MODULE_1__["requestSingleSong"])(songId));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_song_show__WEBPACK_IMPORTED_MODULE_2__["default"]));
 
 /***/ }),
 
@@ -2139,7 +2462,7 @@ var Auth = function Auth(_ref) {
     path: path,
     exact: exact,
     render: function render(props) {
-      return !loggedIn ? react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(Component, props) : react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Redirect"], {
+      return loggedIn ? react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(Component, props) : react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Redirect"], {
         to: "/"
       });
     }

@@ -27,10 +27,17 @@ class Api::SongsController < ApplicationController
     render :index
   end
 
+  def destroy
+    @song = Song.find_by(id: params[:id])
+    @song.destroy
+
+    render :show
+  end
+
   private
 
   def song_params
-    params.require(:song).permit(:name, :user_id, :song_mp3)
+    params.require(:song).permit(:name, :user_id, :song_mp3, :song_art)
   end
 
 end

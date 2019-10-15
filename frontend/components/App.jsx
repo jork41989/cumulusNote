@@ -8,6 +8,7 @@ import { Route } from 'react-router-dom';
 import Modal from './modal/modal'
 import UserProfileContaner from "./userProfile/user_profile_container"
 import SongFormContainer from "./songForm/song_form_container"
+import SongShowContainer from "./songShow/song_show_container"
 
 
 
@@ -24,7 +25,8 @@ const App = () => (
     </div>
     <div className={"main_content_div"}>
       <Route path='/users/:id' component={UserProfileContaner} />
-      <Route path='/createSong' component={SongFormContainer} />
+      <Route path='/songs/:id' component={SongShowContainer} /> 
+      <AuthRoute path='/createSong' component={SongFormContainer} />
     </div>
     <Modal />
   </div>

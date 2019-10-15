@@ -1,0 +1,24 @@
+.songDiv {
+  height: 180px; 
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.songInfoDiv{
+  height: 160px; 
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.songNameDiv{
+  margin-left: 20px;
+}
+
+.songDiv:first-of-type{
+  padding-top: 20px;
+}
+.songArt{
+  height: 160px;
+  width: 160px;
+}

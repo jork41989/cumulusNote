@@ -46,6 +46,22 @@
   align-self: center;
   margin-top: 10px;
   margin-bottom: 10px;
+  
+}
+
+.profilePhoto{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+
+.backgroundPhoto{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 // .profileEditInput {
@@ -60,23 +76,99 @@
 //    cursor: pointer;
 // }
 
-.profileEditInput::-webkit-file-upload-button {
-  visibility: hidden;
+.previewprofilePhotoDiv{
+	height: 260px;
+  width: 260px;
+  border-radius: 50%;
+	background-image: linear-gradient(135deg,#846170,#70929c);
+	display: block;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+}
+.profilePhotoUploadDiv{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
 }
 
-[type="file"] {
-   border-radius: 5px;
-    background-color: #f50;
+.profilePhotofile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+	
+}
+
+.profilePhotofile + label {
+    font-size: 14px;
+    font-weight: 700;
     color: white;
+    background-color: none;
+		display: inline-block;
+		position: absolute;
+    bottom: 30px;
+    left: 0;
+    right: 0;
     height: 20px;
-    font-size: 16px;
-    width: 402px;
-   text-align: center;
-   align-items: center;
-   cursor: pointer;
-   margin-top: 10px;
+		cursor: pointer;
+		text-align: center;
 }
 
-input[type="file" i] {
-  text-align: center !important;
+.profilePhotofile:focus + label,
+.profilePhotofile + label:hover {
+		background-color: lightblue;
+		color: #000;
+}
+
+.profilePhotofile:focus + label {
+	outline: 1px dotted #000;
+	outline: -webkit-focus-ring-color auto 5px;
+}
+
+.previewbackgroundPhotoDiv{
+	height: 200px;
+  width: 400px;
+	background-image: linear-gradient(135deg,#846170,#70929c);
+	display: block;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+}
+
+.backgroundPhotofile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;	
+}
+
+.backgroundPhotofile + label {
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    background-color: none;
+		display: inline-block;
+		position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    height: 20px;
+		cursor: pointer;
+		text-align: center;
+}
+
+.backgroundPhotofile:focus + label,
+.backgroundPhotofile + label:hover {
+		background-color: lightblue;
+		color: #000;
+}
+
+.backgroundPhotofile:focus + label {
+	outline: 1px dotted #000;
+	outline: -webkit-focus-ring-color auto 5px;
 }

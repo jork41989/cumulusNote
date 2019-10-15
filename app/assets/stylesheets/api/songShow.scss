@@ -1,0 +1,24 @@
+.songShowArt{
+  height: 260px;
+  width: 260px;
+  background-image: linear-gradient(135deg,#846170,#70929c);
+}
+
+.songShowDiv{
+  padding-top: 30px;
+   display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.songShowInfoArt{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 100%;
+}
+.songShowInfo{
+  padding-left: 10px;
+}
