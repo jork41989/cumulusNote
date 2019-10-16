@@ -3,7 +3,7 @@
   position: fixed;
   bottom: 0;
   width: 100%;
-  z-index: 999;
+  z-index: 998;
   background-color: #f2f2f2;
   border-top: 1px solid #cecece;
       display: flex;
@@ -13,7 +13,7 @@
 .playbackBarInner{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     width: 60%;
     padding-left: 20%;
@@ -28,4 +28,64 @@
     border-radius: 50%;
     text-align: center;
     font-size: 30px;
+}
+
+#timeline{
+    width: 600px;
+    height: 20px;
+    border-radius: 15px;
+    background: rgba(0,0,0,.3);
+}
+
+#handle{
+	width: 18px;
+	height: 18px;
+	border-radius: 50%;
+	margin-top: 1px;
+	background: #f50;
+}
+
+.currentTime{
+    width: 60px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.duration{
+    padding-right: 50px;
+    padding-left: 10px;
+    width: 20px;
+}
+
+.playbackSongArt{
+    height: 30px;
+    width: 30px;
+    background-image: linear-gradient(135deg,#846170,#70929c);
+	background-repeat: no-repeat;
+    background-size: cover;
+    margin-right: 10px;
+}
+
+.playbackArtist{
+    font-size: 11px;
+    line-height: 16px;
+    color: #999;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.playbackArtist:hover{
+    color: black;
+}
+
+.playbackSongName{
+    font-size: 11px;
+    color: #666;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.playbackSongName:hover{
+    color: black
+    
 }

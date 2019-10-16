@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import {requestSingleSong, playAsong, pauseAsong} from '../../actions/songs_actions';
+import {requestSingleSong, playAsong, pauseAsong, justPlayIt} from '../../actions/songs_actions';
 import SongShow from './song_show';
 
 const mapStateToProps = (state, ownProps) => {
@@ -7,7 +7,7 @@ const mapStateToProps = (state, ownProps) => {
   let song = state.entities.songs[songId];
   let currentSong;
   let playback;
-  console.log(state)
+
   if (song){
     song = Object.assign({}, song)
   }
@@ -30,7 +30,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     requestSingleSong: () => dispatch(requestSingleSong(songId)),
     playAsong: (song) => dispatch(playAsong(song)),
-    pauseAsong: () => dispatch(playAsong())
+    pauseAsong: () => dispatch(pauseAsong()),
+    justPlayIt: () => dispatch(justPlayIt())
   }
 }
 

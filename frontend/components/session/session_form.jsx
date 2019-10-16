@@ -83,7 +83,7 @@ export default class SessionForm extends React.Component {
 
 
   setErrors() {
-    console.log(this.props.errors)
+    
     const finError = []
     if (this.props.errors){ 
       this.props.errors.forEach( error => {

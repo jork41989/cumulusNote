@@ -9,7 +9,7 @@ export default (state = {}, action) => {
       return action.songs || {}
     case REMOVE_SINGLE_SONG:
       let newState = Object.assign({}, state)
-      delete newState[action.song.id]
+      delete newState[action.song.song.id]
       return newState
     default:
       return state;

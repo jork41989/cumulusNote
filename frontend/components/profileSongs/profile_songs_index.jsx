@@ -1,5 +1,5 @@
 import React from 'react';
-import ProfileSongIndexItem from './profile_song_index_item';
+import ProfileSongIndexItemContainer from './profile_song_index_item_container';
 
 export default class ProfileSongIndex extends React.Component{
   constructor(props){
@@ -15,7 +15,7 @@ export default class ProfileSongIndex extends React.Component{
   }
 
   componentDidUpdate(prevProps){
-    console.log(prevProps, this.props)
+    
     if(this.props.user.id != prevProps.user.id){
       this.props.requestAllUserSongs(this.props.user.id)
       }
@@ -30,7 +30,7 @@ export default class ProfileSongIndex extends React.Component{
         Object.values(this.props.songs).map(song => (
     
           
-          <ProfileSongIndexItem song={song} key={song.id} user={this.props.user} removeASignleSong={this.props.removeASignleSong} currentUser={this.props.currentUser}/>
+          <ProfileSongIndexItemContainer song={song} key={song.id} user={this.props.user} />
         ))
       )} else {
         return (

@@ -12,6 +12,7 @@ export default class SongShow extends React.Component {
     this.play = this.play.bind(this)
     this.pause = this.pause.bind(this)
     this.pauseOrPlay = this.pauseOrPlay.bind(this)
+    this.justplay = this.justplay.bind(this)
   }
 
   componentDidMount(e) {
@@ -23,7 +24,7 @@ export default class SongShow extends React.Component {
     })
   }
   componentDidUpdate(prevProps){
-    console.log(this.props)
+
   }
 
   edit(){
@@ -38,19 +39,27 @@ export default class SongShow extends React.Component {
 
   play(){
     this.props.playAsong(this.state)
+
+  }
+
+  justplay(){
+    this.props.justPlayIt()
   }
 
   pause(){
     this.props.pauseAsong()
+   
   }
 
   pauseOrPlay(){
     
     if (this.props.currentSong){
-      console.log("inside")
+     
       if(this.props.currentSong.song.id === this.state.song.id && this.props.playback){
         return (<i class="fas fa-pause-circle SongShowPause" onClick={this.pause}></i>)
-      } else{
+      } else if (this.props.currentSong.song.id === this.state.song.id && !this.props.playback){
+        return (<i className="fas fa-play SongShowPlay" onClick={this.justplay}></i>)
+      } else {
         return (<i className="fas fa-play SongShowPlay" onClick={this.play}></i>)
       }
     }else {

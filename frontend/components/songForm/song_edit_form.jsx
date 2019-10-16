@@ -20,7 +20,7 @@ export default class SongForm extends React.Component {
     this.owner = this.owner.bind(this)
   }
   componentDidMount(e) {
-    console.log(this.props)
+    
     this.props.requestSingleSong(this.props.songId).then(response => {
 
       this.setState({ name: response.payload.song.name, user_id: response.payload.user.id, song_mp3: response.payload.song.song_mp3, song_id: response.payload.song.id, song_art_cur: response.payload.song.song_art });

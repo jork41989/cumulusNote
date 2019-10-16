@@ -52,6 +52,9 @@
 .Playindex{
   font-size: 26px;
 }
+.pauseIndex{
+  font-size: 42px;
+}
 
 .songArtist{
   font-size: 12px;
@@ -65,4 +68,8 @@
 .songTitleLink{
   text-decoration: none;
   color: #333;
+}
+
+.playPauseIndex{
+  width: 46px;
 }

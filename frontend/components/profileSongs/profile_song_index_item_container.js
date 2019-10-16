@@ -1,6 +1,7 @@
-import { requestAllUserSongs, removeASignleSong, playAsong, pauseAsong, justPlayIt} from '../../actions/songs_actions';
-import ProfileSongIndex from './profile_songs_index';
+import { playAsong, pauseAsong, justPlayIt, removeASignleSong } from '../../actions/songs_actions';
+import ProfileSongIndexItem from './profile_song_index_item';
 import { connect } from 'react-redux';
+
 
 const mapStateToProps = (state, ownProps) => {
   let currentSong;
@@ -10,25 +11,24 @@ const mapStateToProps = (state, ownProps) => {
     playback = state.ui.playback.playing
   }
   return {
-    songs: state.entities.songs,
     currentUser: state.session.currentUser,
     currentSong: currentSong,
     playback: playback
   }
 }
 
+
+
 const mapDispatchToProps = (dispatch, ownProps) => {
- 
+
   return {
-  requestAllUserSongs: (userId) => dispatch(requestAllUserSongs(userId)),
     removeASignleSong: (songId) => dispatch(removeASignleSong(songId)),
     playAsong: (song) => dispatch(playAsong(song)),
     pauseAsong: () => dispatch(pauseAsong()),
     justPlayIt: () => dispatch(justPlayIt())
   }
 }
-
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ProfileSongIndex);
+)(ProfileSongIndexItem);
