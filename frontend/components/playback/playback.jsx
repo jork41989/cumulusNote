@@ -204,6 +204,9 @@ export default class Playback extends React.Component {
             <div id="handle" onMouseDown={this.mouseDown} ref={(handle) => { this.handle = handle }} />
           </div>
           <div className={"duration"}>{this.state.duration}</div>
+          <div id="volume_control">
+            
+          </div>
           <div className={"playbackSongArt"} style={art}></div>
           <div>
             {this.artistInfo()}

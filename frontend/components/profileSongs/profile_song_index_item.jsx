@@ -49,11 +49,15 @@ pauseOrPlay() {
   render(){
   let art;
   let del;
-    if (this.props.song){
+  if (this.props.song){
   if (this.props.song.song_art) {
-    art = <img src={this.props.song.song_art} className={"songArt"} />
+    
+    art = {
+      backgroundImage: `url('${this.props.song.song_art}')`
+    }
   } else {
-    art = <div className={"songArt"}></div>
+    
+    art = {}
   }
 }
     if (this.props.currentUser) {
@@ -67,7 +71,7 @@ pauseOrPlay() {
   
   return (
     <div className={"songDiv"}>
-      {art}
+      <div className={"songArt"} style={art}></div>
       <div className={"songInfoDiv"}>
         <div className={"songInfoDivOrg"}>
         <div className={"songNamePlayDiv"}>

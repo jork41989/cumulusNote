@@ -923,6 +923,8 @@ function (_React$Component) {
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "duration"
       }, this.state.duration), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "volume_control"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "playbackSongArt",
         style: art
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.artistInfo(), this.songInfo()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("audio", {
@@ -1354,14 +1356,11 @@ function (_React$Component) {
 
       if (this.props.song) {
         if (this.props.song.song_art) {
-          art = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-            src: this.props.song.song_art,
-            className: "songArt"
-          });
+          art = {
+            backgroundImage: "url('".concat(this.props.song.song_art, "')")
+          };
         } else {
-          art = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "songArt"
-          });
+          art = {};
         }
       }
 
@@ -1380,7 +1379,10 @@ function (_React$Component) {
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "songDiv"
-      }, art, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "songArt",
+        style: art
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "songInfoDiv"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "songInfoDivOrg"
@@ -1540,7 +1542,9 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "All Songs"), this.hasSongs());
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "songIndexMain"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "All Songs"), this.hasSongs());
     }
   }]);
 
