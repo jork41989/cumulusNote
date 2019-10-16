@@ -22,9 +22,12 @@ export default ({ song, user, removeASignleSong, currentUser}) => {
       {art}
       <div className={"songInfoDiv"}>
         <div className={"songInfoDivOrg"}>
-        <div className={"songNameDiv"}>
-          <NavLink to={`/songs/${song.id}`}>{song.name}</NavLink>
-          <p>{user.f_name} {user.l_name}</p>
+        <div className={"songNamePlayDiv"}>
+            <div><i class="fas fa-play Playindex"></i></div>
+            <div className={"songNameDiv"}>
+              <p className={"songArtist"}>{user.f_name} {user.l_name}</p>
+              <NavLink to={`/songs/${song.id}`} className={"songTitleLink"}>{song.name}</NavLink>
+            </div>
         </div>
         <div>{del}</div>
         </div>

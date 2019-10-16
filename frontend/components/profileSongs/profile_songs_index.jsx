@@ -45,7 +45,7 @@ export default class ProfileSongIndex extends React.Component{
   render() {
     return (
       <div>
-        
+        <h2>All Songs</h2>
         {this.hasSongs()}
       </div>
     )

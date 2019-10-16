@@ -42,3 +42,27 @@
    font-size: 16px;
    cursor: pointer;
 }
+.songNamePlayDiv{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.Playindex{
+  font-size: 26px;
+}
+
+.songArtist{
+  font-size: 12px;
+  color: #999;
+}
+
+.songArtist:hover{
+  color: black;
+}
+
+.songTitleLink{
+  text-decoration: none;
+  color: #333;
+}

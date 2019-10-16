@@ -34,6 +34,17 @@ class Api::SongsController < ApplicationController
     render :show
   end
 
+   def update 
+    @song = Song.find_by(id: params[:id])
+    if @song.update(song_params)
+     
+      render 'api/songs/show'
+    else
+      # debugger
+      render json: @song.errors.full_messages, status: 401
+    end
+  end
+
   private
 
   def song_params
