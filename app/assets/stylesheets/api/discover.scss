@@ -37,11 +37,11 @@
   font-size: 80px;
   padding: 20px !important;
   margin-right: 10px;
-  opacity: 0;
+  display: none;
 }
 
-.PlayDiscover:hover{
-  opacity: 100%;
+.songDiscoverArt:hover .PlayDiscover{
+  display: inline;
 }
 
 .PlayDiscoverPlaying{

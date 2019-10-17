@@ -778,9 +778,9 @@ function (_React$Component) {
           className: 'discoverMessageDivIn'
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: 'discoverMessageL'
-        }, "What's next in music is first on SoundCloud"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        }, "What's next in music is first on cumulusNote"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: 'discoverMessages'
-        }, "Upload your first track and begin your journey. SoundCloud gives you space to create, find your fans, and connect with other artists.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        }, "Upload your first track and begin your journey. cumulusNote gives you space to create, find your fans, and connect with other artists.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           onClick: function onClick() {
             return _this3.props.openModal('login');
           },

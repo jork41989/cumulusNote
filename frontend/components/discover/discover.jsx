@@ -32,8 +32,8 @@ export default class Discover extends React.Component {
       return (
         <div className={'discoverMessageDivOut'}>
           <div className={'discoverMessageDivIn'}>
-          <p className={'discoverMessageL'}>What's next in music is first on SoundCloud</p>
-          <p className={'discoverMessages'}>Upload your first track and begin your journey. SoundCloud gives you space to create, find your fans, and connect with other artists.</p>
+            <p className={'discoverMessageL'}>What's next in music is first on cumulusNote</p>
+            <p className={'discoverMessages'}>Upload your first track and begin your journey. cumulusNote gives you space to create, find your fans, and connect with other artists.</p>
           </div>
           <button onClick={() => this.props.openModal('login')} className="loginbtnDiscover">Login</button>
           <button onClick={() => this.props.openModal('signup')} className="signupbtnDiscover">Create account</button>
