@@ -13,16 +13,15 @@ import SongShowContainer from "./songShow/song_show_container"
 import SongEditFormContainer from "./songForm/song_edit_form_container"
 import DiscoverContainer from "./discover/discover_container"
 import Search from './search/search'
+import HeaderContainer from './header/header_container'
 
 
 
 
 const App = () => (
   <div className={"mainBack"}>
-    <header className="HeaderBar">
-      <Link to={"/"} className={"logocontainer"}><img src={window.logoURL} className={"logoimg"}/><p>cumulusNote</p></Link>
-      <Search/>
-      <GreetingContainer />
+    <header >
+      <HeaderContainer />
     </header>
     
     <div className="userbar">

@@ -41,6 +41,8 @@ export default class Discover extends React.Component {
       )
     }
   }
+
+  
   
   hasSongs(){
     if(this.state.songs){
@@ -51,12 +53,12 @@ export default class Discover extends React.Component {
   }
 
   render(){
-    console.log(this.state)
     let hereoImg = {
       backgroundImage: `url('${window.hero}')`
     }
-    
+
     return (<div className={"contentDiv"}>
+      
       <div style={hereoImg} className={'heroBack'}>
         {this.loggedIn()}
       </div>

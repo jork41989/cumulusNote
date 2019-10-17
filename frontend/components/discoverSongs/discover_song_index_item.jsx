@@ -69,8 +69,8 @@ export default class ProfileSongIndex extends React.Component {
         <div className={"songDiscoverArt"} style={art}>
           {this.pauseOrPlay()}
         </div>
-        <p className={'discoverSongName'}>{this.props.song.name}</p>
-        <p className={'discoverArtistName'}>{this.state.user.f_name} {this.state.user.l_name}</p>
+        <NavLink to={`/songs/${this.props.song.id}`} className={'noLineLink'}><p className={'discoverSongName'}>{this.props.song.name}</p></NavLink>
+        <NavLink to={`/users/${this.props.song.user_id}`} className={'noLineLink'}> <p className={'discoverArtistName'}>{this.state.user.f_name} {this.state.user.l_name}</p></NavLink>
       </div>
 
     )

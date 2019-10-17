@@ -13,6 +13,7 @@ export default class Search extends Component {
       itemSelected: {},
       showItemSelected: false
     };
+    
 
     this.clearSearch = this.clearSearch.bind(this);
 
@@ -20,6 +21,7 @@ export default class Search extends Component {
       .then(response => this.setState({ autoCompleteResults: response.songs }))
   }
 
+  
   getAutoCompleteResults(e) {
     
     this.setState({

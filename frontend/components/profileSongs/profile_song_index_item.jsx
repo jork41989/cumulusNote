@@ -35,7 +35,7 @@ pauseOrPlay() {
     if (this.props.currentSong) {
       
       if (this.props.currentSong.song.id === this.props.song.id && this.props.playback) {
-        return (<i class="fas fa-pause-circle pauseIndex" onClick={this.pause}></i>)
+        return (<i className="fas fa-pause-circle pauseIndex" onClick={this.pause}></i>)
       } else if (this.props.currentSong.song.id === this.props.song.id && !this.props.playback) {
         return (<i className="fas fa-play Playindex" onClick={this.justplay}></i>)
       } else {
@@ -62,7 +62,7 @@ pauseOrPlay() {
 }
     if (this.props.currentUser) {
       if (this.props.user.id === this.props.currentUser.id) {
-        del = <button onClick={() => removeASignleSong(this.props.song.id)} className={"removeSongProfile"}><i class="far fa-trash-alt"></i></button>
+        del = <button onClick={() => removeASignleSong(this.props.song.id)} className={"removeSongProfile"}><i className="far fa-trash-alt"></i></button>
     } else {
       del = <div></div>
     }
