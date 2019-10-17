@@ -2914,10 +2914,8 @@ function (_React$Component) {
         className: "loginFormHeader"
       }, "Welcome to "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "formLogoDiv"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: window.logoURL,
-        alt: "",
-        className: "formLogo"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        "class": "fab fa-soundcloud -FormLogo"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "cumulusNote")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: ""
       }, "Please ", this.props.formType, " or ", this.props.otherForm), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
