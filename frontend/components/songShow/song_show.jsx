@@ -120,7 +120,7 @@ export default class SongShow extends React.Component {
                 <div className="songShowInfo">
                   <div className="playDivShow">{this.pauseOrPlay()}</div>
                   <div className="songShowInfoDetails">
-                  <NavLink to={`/users/${this.state.user.id}`}><p className={"songShowUser"}>{this.state.user.f_name} {this.state.user.l_name} </p></NavLink>
+                    <NavLink to={`/users/${this.state.user.id}`} className={'noLineLink'}><p className={"songShowUser"}>{this.state.user.f_name} {this.state.user.l_name} </p></NavLink>
                   <p className={"songShowSongName"}>{this.state.song.name}</p>
                   {this.edit()}
                   </div>

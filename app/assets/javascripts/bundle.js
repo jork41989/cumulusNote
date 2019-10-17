@@ -734,7 +734,7 @@ __webpack_require__.r(__webpack_exports__);
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
       to: '/createSong',
       className: "upload-a-button"
-    }, " Upload a Song"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+    }, " Upload"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
       to: "/users/".concat(currentUser.id),
       className: "headerCurrentUser"
     }, " ", profileP(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
@@ -3262,7 +3262,8 @@ function (_React$Component) {
           }, this.pauseOrPlay()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "songShowInfoDetails"
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
-            to: "/users/".concat(this.state.user.id)
+            to: "/users/".concat(this.state.user.id),
+            className: 'noLineLink'
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
             className: "songShowUser"
           }, this.state.user.f_name, " ", this.state.user.l_name, " ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {

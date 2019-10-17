@@ -129,7 +129,7 @@
 }
 
 .upload-a-button{
-   color: white;
+   color: #ccc;
   border: none;
   text-decoration: none;
   border-radius: 5px;
@@ -138,10 +138,14 @@
   padding-left: 12px;
   padding-right: 12px;
   font-size: 12px;
-  background-color: #f50;
+  font: 100 14px/1.5 "Interstate","Lucida Grande",Arial,sans-serif;
   margin-left: 10px;
   margin-right: 10px;
   cursor: pointer;
+}
+
+.upload-a-button:hover{
+  color:white;
 }
 
 .headerPhoto{
@@ -155,4 +159,14 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  text-decoration: none;
+  font: 100 14px/1.5 "Interstate","Lucida Grande",Arial,sans-serif;
 }
+
+ .header-name {
+   color: #ccc;
+ }
+
+ .header-name:hover{
+   color: white;
+ }
