@@ -12,7 +12,7 @@ end
 json.comments do 
   @comments.each do |comment| 
     json.set! comment.id do 
-      json.extract! comment, :id, :body, :parent_comment
+      json.extract! comment, :id, :body, :parent_comment, :created_at
       json.user_id comment.user.id 
       json.user_f_name comment.user.f_name
       json.user_l_name comment.user.l_name

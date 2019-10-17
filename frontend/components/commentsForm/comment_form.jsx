@@ -37,15 +37,28 @@ export default class CommentForm extends React.Component {
   }
 
   render (){
-    console.log(this.props)
+
+    let userProfile;
+    if (this.props.currentUser.profile_photo) {
+      userProfile = {
+        backgroundImage: `url('${this.props.currentUser.profile_photo}')`
+      }
+    } else {
+      userProfile = {
+
+      }
+    }
     return (<div>
       <form onSubmit={this.handleSubmit} className={"commentForm"}>
-        <textarea type="text"
+        <div className={'commentProfilePhoto'} style={userProfile}>
+
+        </div>
+        <input type="text"
           value={this.state.body}
           onChange={this.update('body')}
-          className="login-input"
+          className="comment-input"
           placeholder="Place your comment here"
-        ></textarea>
+        />
         <input className="commentFormSubmit" type="submit" value={"Comment Away!"} />
         </form>
     </div>)

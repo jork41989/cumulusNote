@@ -601,15 +601,27 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log(this.props);
+      var userProfile;
+
+      if (this.props.currentUser.profile_photo) {
+        userProfile = {
+          backgroundImage: "url('".concat(this.props.currentUser.profile_photo, "')")
+        };
+      } else {
+        userProfile = {};
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit,
         className: "commentForm"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: 'commentProfilePhoto',
+        style: userProfile
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.body,
         onChange: this.update('body'),
-        className: "login-input",
+        className: "comment-input",
         placeholder: "Place your comment here"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "commentFormSubmit",
@@ -650,7 +662,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   };
   return {
     commentInfo: commentInfo,
-    currentUser: state.session.currentUser
+    currentUser: state.entities.users[state.session.currentUser.id]
   };
 };
 
@@ -2243,7 +2255,10 @@ function (_React$Component) {
     value: function componentDidMount() {}
   }, {
     key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {}
+    value: function componentDidUpdate(prevProps) {
+      console.log(this.props);
+      console.log(prevProps);
+    }
   }, {
     key: "hasComments",
     value: function hasComments() {
@@ -2328,9 +2343,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -2345,24 +2360,58 @@ function (_React$Component) {
   _inherits(ProfileSongIndex, _React$Component);
 
   function ProfileSongIndex(props) {
+    var _this;
+
     _classCallCheck(this, ProfileSongIndex);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(ProfileSongIndex).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(ProfileSongIndex).call(this, props));
+    _this.dateConvert = _this.dateConvert.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(ProfileSongIndex, [{
+    key: "dateConvert",
+    value: function dateConvert() {
+      var options = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      };
+      return new Date(this.props.comment.created_at).toLocaleDateString([], options);
+    }
+  }, {
     key: "render",
     value: function render() {
-      console.log(this.props);
+      var userProfile;
+
+      if (this.props.comment.profile_photo) {
+        userProfile = {
+          backgroundImage: "url('".concat(this.props.comment.profile_photo, "')")
+        };
+      } else {
+        userProfile = {};
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: 'songCommentDivWPhoto'
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+        to: "/users/".concat(this.props.comment.user_id),
+        className: 'noLineLink'
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: 'commentUserPhoto',
+        style: userProfile
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: 'songCommentDiv'
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
-        to: "/users/".concat(this.props.comment.user_id)
+        to: "/users/".concat(this.props.comment.user_id),
+        className: 'noLineLink'
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: 'commentUsername'
       }, this.props.comment.user_f_name, " ", this.props.comment.user_l_name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: 'commentBody'
-      }, this.props.comment.body));
+      }, this.props.comment.body)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: 'commentDate'
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.dateConvert())));
     }
   }]);
 
@@ -3179,7 +3228,6 @@ function (_React$Component) {
     value: function render() {
       var art;
       var pphoto;
-      console.log(this.state);
 
       if (this.state.song) {
         if (Object.values(this.state.song).length) {
@@ -3231,9 +3279,12 @@ function (_React$Component) {
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "songShowArtistPhoto",
             style: pphoto
-          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+            to: "/users/".concat(this.state.user.id),
+            className: 'noLineLink'
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
             className: "songShowArtistName"
-          }, this.state.user.f_name, " ", this.state.user.l_name)), this.commentsThere())));
+          }, this.state.user.f_name, " ", this.state.user.l_name))), this.commentsThere())));
         }
       } else {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "no song ");

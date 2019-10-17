@@ -16,7 +16,8 @@ export default class CommentSongIndex extends React.Component {
 
   componentDidUpdate(prevProps) {
 
- 
+      console.log(this.props)
+      console.log(prevProps)
   }
 
 
@@ -26,6 +27,7 @@ export default class CommentSongIndex extends React.Component {
 
       return (
         Object.values(this.props.comments).map(comment => (
+          
           <SongCommentIndexItemContainer comment={comment} />
         ))
       )

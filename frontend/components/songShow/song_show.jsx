@@ -88,7 +88,6 @@ export default class SongShow extends React.Component {
   render(){
     let art;
     let pphoto;
-    console.log(this.state)
     if (this.state.song){
       
     if (Object.values(this.state.song).length){
@@ -138,7 +137,7 @@ export default class SongShow extends React.Component {
             <div className={'commentArtistArea'}>
             <div className={"songShowArtistInfo"}>
                 <div className={"songShowArtistPhoto"} style={pphoto}></div>
-                <p className={"songShowArtistName"}>{this.state.user.f_name} {this.state.user.l_name}</p>
+                <NavLink to={`/users/${this.state.user.id}`} className={'noLineLink'}><p className={"songShowArtistName"}>{this.state.user.f_name} {this.state.user.l_name}</p></NavLink>
             </div>
             {this.commentsThere()}
             </div>

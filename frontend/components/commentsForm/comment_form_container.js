@@ -7,7 +7,7 @@ const mapStateToProps = (state, ownProps) => {
   let commentInfo = { body: "", user_id: "", song_id: "" };
   return {
     commentInfo,
-    currentUser: state.session.currentUser,
+    currentUser: state.entities.users[state.session.currentUser.id]
   }
 }
 

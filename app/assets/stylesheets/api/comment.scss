@@ -2,9 +2,10 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    width: 70%;
     margin-top: 5px;
     margin-bottom: 5px;
-    padding-left: 30px;
+    padding-left: 15px;
 }
 .commentUsername{
       color: #999;
@@ -19,4 +20,27 @@
 .commentBody{
   font: 12px/1.4 "Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif;
     color: #333;
+    width: 60%;
+}
+
+.commentUserPhoto{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+	background-image: linear-gradient(135deg,#846170,#70929c);
+	background-repeat: no-repeat;
+  background-size: cover;
+  
+}
+
+.songCommentDivWPhoto{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+.commentDate{
+  color: #999;
 }
