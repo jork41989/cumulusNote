@@ -9,6 +9,8 @@ json.songs do
       if song.song_art.attached?
         json.song_art url_for(song.song_art)
       end
+      json.user_l_name song.user.l_name
+      json.user_f_name song.user.f_name
     end
   end
 end

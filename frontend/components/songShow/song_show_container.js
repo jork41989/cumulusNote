@@ -20,7 +20,8 @@ const mapStateToProps = (state, ownProps) => {
     errors: state.errors,
     currentUser: state.session.currentUser,
     currentSong: currentSong,
-    playback: playback
+    playback: playback,
+    comments: state.entities.comments
   }
 
 }

@@ -1,4 +1,4 @@
-import { fetchASong, fetchAllUsersSongs, updateSong, createSong, removeSong} from '../util/song_api_util'
+import { fetchASong, fetchAllUsersSongs, updateSong, createSong, removeSong, fetchDiscoverySongs} from '../util/song_api_util'
 
 export const RECEIVE_ALL_USER_SONGS = "RECEIVE_ALL_USER_SONGS";
 export const RECEIVE_SINGLE_SONG = "RECEIVE_SINGLE_SONG";
@@ -57,6 +57,13 @@ export const requestAllUserSongs = (userId) => (dispatch) => (
     
     
     })
+)
+
+export const requestDiscoverySongs = () => (dispatch) => (
+  fetchDiscoverySongs().then(songs => {
+    dispatch(receiveAllUserSongs(songs))
+    return songs
+  })
 )
 
 

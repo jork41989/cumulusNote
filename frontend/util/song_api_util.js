@@ -9,6 +9,10 @@ export const fetchAllUsersSongs = (userId) => ($.ajax({
   type: 'GET'
 }));
 
+export const fetchDiscoverySongs = () => ($.ajax({
+  url: `/api/songs`,
+  type: 'GET'
+}))
 
 
 export const updateSong = (songId, song) => {

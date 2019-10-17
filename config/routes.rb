@@ -7,9 +7,11 @@ Rails.application.routes.draw do
       resources :songs, only: [:index]
     end
     resource :session, only: [:create, :destroy, :show]
-    resources :songs, except: :index do  
+    resources :songs do  
       resources :comments, only: :index
+      
     end
     resources :comments, except: :index
+    get :search, controller: :songs
   end
 end

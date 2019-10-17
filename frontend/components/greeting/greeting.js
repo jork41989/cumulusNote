@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 
+
 export default ({ currentUser, logout, openModal }) => {
   const profileP = () =>{
       if (currentUser.profile_photo){
@@ -21,6 +22,7 @@ export default ({ currentUser, logout, openModal }) => {
     
     <hgroup className="header-group">
       <NavLink to={'/createSong'} className="upload-a-button" > Upload</NavLink>
+    
       <NavLink to={`/users/${currentUser.id}`} className={"headerCurrentUser"}> {profileP()}<p className="header-name"> {currentUser.f_name} {currentUser.l_name}</p></NavLink>
       <button className="logout-button" onClick={logout}>Log Out</button>
     </hgroup>

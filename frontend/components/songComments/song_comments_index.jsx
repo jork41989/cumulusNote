@@ -28,7 +28,7 @@ export default class CommentSongIndex extends React.Component {
       return (
         Object.values(this.props.comments).map(comment => (
           
-          <SongCommentIndexItemContainer comment={comment} />
+          <SongCommentIndexItemContainer comment={comment} key={comment.id}/>
         ))
       )
     } else {
@@ -43,7 +43,7 @@ export default class CommentSongIndex extends React.Component {
 
   render() {
     return (
-      <div >
+      <div className={'CommentDivs'} >
         {this.hasComments()}
       </div>
     )

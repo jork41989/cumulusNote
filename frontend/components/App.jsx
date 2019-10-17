@@ -11,6 +11,8 @@ import UserProfileContaner from "./userProfile/user_profile_container"
 import SongFormContainer from "./songForm/song_form_container"
 import SongShowContainer from "./songShow/song_show_container"
 import SongEditFormContainer from "./songForm/song_edit_form_container"
+import DiscoverContainer from "./discover/discover_container"
+import Search from './search/search'
 
 
 
@@ -19,6 +21,7 @@ const App = () => (
   <div className={"mainBack"}>
     <header className="HeaderBar">
       <Link to={"/"} className={"logocontainer"}><img src={window.logoURL} className={"logoimg"}/><p>cumulusNote</p></Link>
+      <Search/>
       <GreetingContainer />
     </header>
     
@@ -30,6 +33,7 @@ const App = () => (
       <Route exact path='/songs/:id' component={SongShowContainer} /> 
       <AuthRoute path='/createSong' component={SongFormContainer} />
       <AuthRoute path='/songs/:id/edit' component={SongEditFormContainer}/>
+      <Route exact path='/' component={DiscoverContainer} />
     </div>
     <Modal />
     <PlayBackContainer />
