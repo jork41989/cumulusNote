@@ -3078,6 +3078,7 @@ function (_React$Component) {
     _this.pauseOrPlay = _this.pauseOrPlay.bind(_assertThisInitialized(_this));
     _this.justplay = _this.justplay.bind(_assertThisInitialized(_this));
     _this.commentsThere = _this.commentsThere.bind(_assertThisInitialized(_this));
+    _this.loggedIn = _this.loggedIn.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -3163,6 +3164,17 @@ function (_React$Component) {
       }
     }
   }, {
+    key: "loggedIn",
+    value: function loggedIn() {
+      if (this.props.currentUser) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_commentsForm_comment_form_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          songId: this.songId
+        });
+      } else {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "You have to log in to comment!");
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var art;
@@ -3212,9 +3224,7 @@ function (_React$Component) {
             style: art
           }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "commentAndArtistStuff"
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_commentsForm_comment_form_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
-            songId: this.songId
-          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          }, this.loggedIn(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: 'commentArtistArea'
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "songShowArtistInfo"

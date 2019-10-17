@@ -16,6 +16,7 @@ export default class SongShow extends React.Component {
     this.pauseOrPlay = this.pauseOrPlay.bind(this)
     this.justplay = this.justplay.bind(this)
     this.commentsThere = this.commentsThere.bind(this)
+    this.loggedIn = this.loggedIn.bind(this)
   }
 
   componentDidMount(e) {
@@ -73,6 +74,17 @@ export default class SongShow extends React.Component {
       return (<SongCommentsIndexContainer comments={this.state.comments} />)
     }
   }
+  loggedIn(){
+    if (this.props.currentUser){
+      return (
+        <CommentFormContainer songId={this.songId} />
+      )
+    } else{
+      return(
+        <div>You have to log in to comment!</div>
+      )
+    }
+  }
   render(){
     let art;
     let pphoto;
@@ -121,7 +133,8 @@ export default class SongShow extends React.Component {
           </div>
 
           <div className={"commentAndArtistStuff"}>
-            <CommentFormContainer songId={this.songId} />
+            {this.loggedIn()}
+           
             <div className={'commentArtistArea'}>
             <div className={"songShowArtistInfo"}>
                 <div className={"songShowArtistPhoto"} style={pphoto}></div>
