@@ -1,0 +1,18 @@
+.commentForm{
+    display: flex;
+    flex-direction: row;
+    margin-right: 330px;
+    padding-top: 20px;
+    margin-bottom: 10px;
+}
+.commentFormSubmit{
+    width: 150px;
+    height: 35px;
+    border-radius: 5px;
+    background-color: #f50;
+    color: white;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+    margin-left: 10px;
+}

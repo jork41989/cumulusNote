@@ -1,6 +1,8 @@
 import React from 'react';
 import { NavLink, Route } from 'react-router-dom';
 import SongShowContainer from './song_show_container'
+import CommentFormContainer from '../commentsForm/comment_form_container'
+import SongCommentsIndexContainer from '../songComments/song_comments_index_container'
 
 export default class SongShow extends React.Component {
   constructor(props) {
@@ -13,14 +15,14 @@ export default class SongShow extends React.Component {
     this.pause = this.pause.bind(this)
     this.pauseOrPlay = this.pauseOrPlay.bind(this)
     this.justplay = this.justplay.bind(this)
+    this.commentsThere = this.commentsThere.bind(this)
   }
 
   componentDidMount(e) {
     // this.poke = this.props.requestSinglePokemon(this.pokeId);
 
     this.props.requestSingleSong(this.songId).then(response => {
-
-      this.setState({ song: response.payload.song, user: response.payload.user });
+      this.setState({ song: response.payload.song, user: response.payload.user, comments: response.payload.comments });
     })
   }
   componentDidUpdate(prevProps){
@@ -66,9 +68,15 @@ export default class SongShow extends React.Component {
     return (<i className="fas fa-play SongShowPlay" onClick={this.play}></i>)
     }
   }
+  commentsThere(){
+    if (this.state.comments){
+      return (<SongCommentsIndexContainer comments={this.state.comments} />)
+    }
+  }
   render(){
     let art;
-    
+    let pphoto;
+    console.log(this.state)
     if (this.state.song){
       
     if (Object.values(this.state.song).length){
@@ -81,6 +89,16 @@ export default class SongShow extends React.Component {
 
         }
       }
+      if(this.state.user.profile_photo){
+        pphoto = {
+          backgroundImage: `url('${this.state.user.profile_photo}')`
+        }
+      } else {
+        pphoto = {
+
+        }
+      }
+
       return (
         <div className={"contentDiv"}>
 
@@ -102,8 +120,16 @@ export default class SongShow extends React.Component {
             </div>
           </div>
 
-          <div>
-            comments go here!
+          <div className={"commentAndArtistStuff"}>
+            <CommentFormContainer songId={this.songId} />
+            <div className={'commentArtistArea'}>
+            <div className={"songShowArtistInfo"}>
+                <div className={"songShowArtistPhoto"} style={pphoto}></div>
+                <p className={"songShowArtistName"}>{this.state.user.f_name} {this.state.user.l_name}</p>
+            </div>
+            {this.commentsThere()}
+            </div>
+            
           </div>
         </div>
       )

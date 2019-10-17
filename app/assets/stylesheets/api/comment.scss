@@ -1,0 +1,22 @@
+.songCommentDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-left: 30px;
+}
+.commentUsername{
+      color: #999;
+      font: 12px/1.4 "Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif;
+      margin-bottom: 2px;
+      text-decoration: none;
+}
+.commentUsername:hover{
+  color: black;
+}
+
+.commentBody{
+  font: 12px/1.4 "Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif;
+    color: #333;
+}

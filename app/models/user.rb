@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :bigint           not null, primary key
+#  username        :string           not null
+#  email           :string           not null
+#  password_digest :string
+#  session_token   :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  f_name          :string
+#  l_name          :string
+#
+
 class User < ApplicationRecord
 
   validates :username, presence: true, uniqueness: true
@@ -8,7 +23,7 @@ class User < ApplicationRecord
 
   has_one_attached :profile_photo
   has_one_attached :profile_background
-
+  has_many :comments, class_name: "Comment", foreign_key: :user_id
   has_many :songs, class_name: "Song", foreign_key: :user_id
   attr_reader :password
   #FeGrip

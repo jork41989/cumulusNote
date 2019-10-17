@@ -16,6 +16,7 @@ class Api::SongsController < ApplicationController
 
   def show 
       @song = Song.find_by(id: params[:id])
+      @comments = @song.comments
       render :show
   end
 
@@ -34,7 +35,7 @@ class Api::SongsController < ApplicationController
     render :show
   end
 
-   def update 
+  def update 
     @song = Song.find_by(id: params[:id])
     if @song.update(song_params)
      
