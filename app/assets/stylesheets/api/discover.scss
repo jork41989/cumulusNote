@@ -68,3 +68,92 @@
   color: #999;
 
 }
+
+.SongsHeader{
+    font: 24px/1.4 "Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif;
+    text-align: center;
+    padding-top: 20px;
+    margin-bottom: 30px;
+}
+
+.heroBack{
+  width: 100%;
+  height: 450px;
+   background-repeat: no-repeat;
+	background-size: cover;
+  position: relative;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcomeMessage{
+    margin-bottom: 8px;
+    font-size: 36px;
+    font-weight: 100;
+    font-family: "Interstate","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif;
+    color: #fff;
+}
+
+.signupbtnDiscover{
+    background-color: #f50;
+    border-color: #f50;
+    color: #fff;
+    font-size: 18px;
+    min-width: 210px;
+    height: 46px;
+    line-height: 46px;
+    padding-top: 0;
+    padding-bottom: 0;
+    font-family: "Interstate","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif;
+   cursor: pointer;
+}
+
+
+.loginbtnDiscover{
+    background: 0 0;
+    color: #fff;
+    border-color: #ccc;
+    font-size: 17px;
+    min-width: 164px;
+    height: 46px;
+    margin-right: 25px;
+    padding-top: 12px;
+    padding: 10px 15px;
+    line-height: 18px;
+    font-family: "Interstate","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif;
+    cursor: pointer;
+}
+
+.discoverMessageL{
+      color: #fff;
+      margin-bottom: 8px;
+    font-size: 36px;
+    font-weight: 100;
+    text-align: center;
+  font-family: "Interstate","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif;
+}
+
+.discoverMessages{
+      font-size: 18px;
+    max-width: 530px;
+    text-align: center;
+    color: #fff;
+    font-family: "Interstate","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif;
+}
+
+.discoverMessageDivOut{
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.205);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.discoverMessageDivIn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    
+}

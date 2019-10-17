@@ -4,7 +4,7 @@ import DiscoverSongIndexItemContainer from './discover_song_index_item_container
 export default class ProfileSongIndex extends React.Component {
   constructor(props) {
     super(props)
-
+  
     this.hasSongs = this.hasSongs.bind(this)
 
 
@@ -17,7 +17,7 @@ export default class ProfileSongIndex extends React.Component {
         Object.values(this.props.songs).map(song => (
 
 
-          <DiscoverSongIndexItemContainer song={song} key={song.id} user={this.props.user} />
+          <DiscoverSongIndexItemContainer song={song} key={song.id} user={song.user} />
         ))
       )
     } else {

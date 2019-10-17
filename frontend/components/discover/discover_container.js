@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import Discover from './discover';
 import { requestDiscoverySongs} from '../../actions/songs_actions';
+import { openModal } from '../../actions/modal_actions';
 const mapStateToProps = (state, ownProps) => {
 
   let currentSong;
@@ -24,6 +25,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const songId = parseInt(ownProps.match.params.id);
   return {
     requestDiscoverySongs: () => dispatch(requestDiscoverySongs()),
+    openModal: modal => dispatch(openModal(modal))
 
   }
 }

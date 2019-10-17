@@ -763,7 +763,35 @@ function (_React$Component) {
   }, {
     key: "loggedIn",
     value: function loggedIn() {
-      if (this.props.currentUser) {}
+      var _this3 = this;
+
+      if (this.props.currentUser) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: 'welcomeMessage'
+        }, "Welcome Back "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: 'welcomeMessage'
+        }, this.props.currentUser.f_name, this.props.currentUser.l_name));
+      } else {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: 'discoverMessageDivOut'
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: 'discoverMessageDivIn'
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: 'discoverMessageL'
+        }, "What's next in music is first on SoundCloud"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: 'discoverMessages'
+        }, "Upload your first track and begin your journey. SoundCloud gives you space to create, find your fans, and connect with other artists.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            return _this3.props.openModal('login');
+          },
+          className: "loginbtnDiscover"
+        }, "Login"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            return _this3.props.openModal('signup');
+          },
+          className: "signupbtnDiscover"
+        }, "Create account"));
+      }
     }
   }, {
     key: "hasSongs",
@@ -778,11 +806,19 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       console.log(this.state);
+      var hereoImg = {
+        backgroundImage: "url('".concat(window.hero, "')")
+      };
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "contentDiv"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        style: hereoImg,
+        className: 'heroBack'
+      }, this.loggedIn()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "discoverSongsDiv"
-      }, this.hasSongs()));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        className: 'SongsHeader'
+      }, "Hear what\u2019s trending for free in the cumulusNote community"), this.hasSongs()));
     }
   }]);
 
@@ -805,6 +841,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _discover__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./discover */ "./frontend/components/discover/discover.jsx");
 /* harmony import */ var _actions_songs_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/songs_actions */ "./frontend/actions/songs_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+
 
 
 
@@ -830,6 +868,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
   return {
     requestDiscoverySongs: function requestDiscoverySongs() {
       return dispatch(Object(_actions_songs_actions__WEBPACK_IMPORTED_MODULE_2__["requestDiscoverySongs"])());
+    },
+    openModal: function openModal(modal) {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["openModal"])(modal));
     }
   };
 };
@@ -890,14 +931,12 @@ function (_React$Component) {
   _createClass(ProfileSongIndex, [{
     key: "hasSongs",
     value: function hasSongs() {
-      var _this2 = this;
-
       if (Object.values(this.props.songs).length) {
         return Object.values(this.props.songs).map(function (song) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_discover_song_index_item_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
             song: song,
             key: song.id,
-            user: _this2.props.user
+            user: song.user
           });
         });
       } else {
@@ -966,6 +1005,7 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(ProfileSongIndex).call(this, props));
     _this.state = {
+      user: _this.props.user,
       song: _this.props.song
     };
     _this.pauseOrPlay = _this.pauseOrPlay.bind(_assertThisInitialized(_this));
@@ -978,7 +1018,7 @@ function (_React$Component) {
   _createClass(ProfileSongIndex, [{
     key: "play",
     value: function play() {
-      this.props.playAsong(this.state.song);
+      this.props.playAsong(this.state);
     }
   }, {
     key: "justplay",
@@ -1042,7 +1082,7 @@ function (_React$Component) {
         className: 'discoverSongName'
       }, this.props.song.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: 'discoverArtistName'
-      }, this.props.song.user_f_name, " ", this.props.song.user_l_name));
+      }, this.state.user.f_name, " ", this.state.user.l_name));
     }
   }]);
 

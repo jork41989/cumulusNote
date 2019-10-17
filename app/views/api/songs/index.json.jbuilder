@@ -9,8 +9,12 @@ json.songs do
       if song.song_art.attached?
         json.song_art url_for(song.song_art)
       end
-      json.user_l_name song.user.l_name
-      json.user_f_name song.user.f_name
+      json.user do 
+          json.extract! song.user, :username, :id, :f_name, :l_name
+          if song.user.profile_photo.attached? 
+            json.profile_photo url_for(song.user.profile_photo)
+          end
+    end
     end
   end
 end

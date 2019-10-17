@@ -25,7 +25,7 @@ class Api::SongsController < ApplicationController
       @user = User.find_by(id: params[:user_id])
       @songs = @user.songs 
     else
-      @songs = Song.last(6)
+      @songs = Song.last(10)
     end
     # debugger
     render :index

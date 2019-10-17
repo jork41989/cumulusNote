@@ -6,8 +6,10 @@ export default class ProfileSongIndex extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      user: this.props.user,
       song: this.props.song
     }
+
 
 
     this.pauseOrPlay = this.pauseOrPlay.bind(this)
@@ -16,7 +18,7 @@ export default class ProfileSongIndex extends React.Component {
     this.justplay = this.justplay.bind(this)
   }
   play() {
-    this.props.playAsong(this.state.song)
+    this.props.playAsong(this.state)
 
   }
 
@@ -68,7 +70,7 @@ export default class ProfileSongIndex extends React.Component {
           {this.pauseOrPlay()}
         </div>
         <p className={'discoverSongName'}>{this.props.song.name}</p>
-        <p className={'discoverArtistName'}>{this.props.song.user_f_name} {this.props.song.user_l_name}</p>
+        <p className={'discoverArtistName'}>{this.state.user.f_name} {this.state.user.l_name}</p>
       </div>
 
     )
