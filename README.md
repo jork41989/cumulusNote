@@ -20,3 +20,9 @@ Our users can create an account or login by clicking the login/signup buttons on
 
 Once logged in users can customize their profile with a header image and profile photo
 that way they can let their new fans get to know them a little better. 
+
+![alt text](http://g.recordit.co/AsH25FBboF.gif)
+
+Got some music you want to share? Head on over to the upload section and get to 
+work setting up your first song!
+
