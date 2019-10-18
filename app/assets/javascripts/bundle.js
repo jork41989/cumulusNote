@@ -1560,6 +1560,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var os__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! os */ "./node_modules/os-browserify/browser.js");
+/* harmony import */ var os__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(os__WEBPACK_IMPORTED_MODULE_2__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1577,6 +1579,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -1600,12 +1603,13 @@ function (_React$Component) {
     _this.playing = _this.playing.bind(_assertThisInitialized(_this));
     _this.pausePlay = _this.pausePlay.bind(_assertThisInitialized(_this));
     _this.currentTimeDiv = _this.currentTimeDiv.bind(_assertThisInitialized(_this));
-    _this.mouseMove = _this.mouseMove.bind(_assertThisInitialized(_this));
-    _this.mouseDown = _this.mouseDown.bind(_assertThisInitialized(_this));
-    _this.mouseUp = _this.mouseUp.bind(_assertThisInitialized(_this));
     _this.durationP = _this.durationP.bind(_assertThisInitialized(_this));
     _this.artistInfo = _this.artistInfo.bind(_assertThisInitialized(_this));
     _this.songInfo = _this.songInfo.bind(_assertThisInitialized(_this));
+    _this.mute = _this.mute.bind(_assertThisInitialized(_this));
+    _this.unmute = _this.unmute.bind(_assertThisInitialized(_this));
+    _this.seekUp = _this.seekUp.bind(_assertThisInitialized(_this));
+    _this.seekDown = _this.seekDown.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1617,13 +1621,12 @@ function (_React$Component) {
       var songPlayer = document.getElementById("MainPlayer");
       songPlayer.addEventListener("timeupdate", function () {
         var ratio = songPlayer.currentTime / songPlayer.duration;
-        var position = _this2.timeline.offsetWidth * ratio;
-
-        _this2.positionHandle(position);
 
         _this2.currentTimeDiv();
 
         _this2.durationP();
+
+        _this2.progressBar();
       });
     }
   }, {
@@ -1652,9 +1655,6 @@ function (_React$Component) {
         return this.props.curentSong.song.song_mp3;
       }
     }
-  }, {
-    key: "progressBar",
-    value: function progressBar() {}
   }, {
     key: "artistInfo",
     value: function artistInfo() {
@@ -1739,63 +1739,94 @@ function (_React$Component) {
       }
     }
   }, {
-    key: "mouseMove",
-    value: function mouseMove(e) {
-      // // Width of the timeline
-      // var timelineWidth = this.timeline.offsetWidth - this.handle.offsetWidth;
-      // // Left position of the handle
-      // var handleLeft = e.pageX - this.timeline.offsetLeft;
-      // if (handleLeft >= 0 && handleLeft <= timelineWidth) {
-      //   this.handle.style.marginLeft = handleLeft + "px";
-      // }
-      // if (handleLeft < 0) {
-      //   this.handle.style.marginLeft = "0px";
-      // }
-      // if (handleLeft > timelineWidth) {
-      //   this.handle.style.marginLeft = timelineWidth + "px";
-      // }
+    key: "mute",
+    value: function mute() {
       var songPlayer = document.getElementById("MainPlayer");
-      this.positionHandle(e.pageX);
+      songPlayer.muted = true;
+    }
+  }, {
+    key: "unmute",
+    value: function unmute() {
+      var songPlayer = document.getElementById("MainPlayer");
+      songPlayer.muted = false;
+    }
+  }, {
+    key: "volOn",
+    value: function volOn() {
+      var songPlayer = document.getElementById("MainPlayer");
 
-      if (this.props.curentSong) {
-        songPlayer.currentTime = (e.pageX - 500) / this.timeline.offsetWidth * songPlayer.duration;
+      if (songPlayer) {
+        if (songPlayer.muted) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+            "class": "fas fa-volume-mute",
+            onClick: this.unmute
+          });
+        } else if (songPlayer.volume <= .5) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+            "class": "fas fa-volume-down",
+            onClick: this.mute
+          });
+        } else {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+            className: "fas fa-volume-up",
+            onClick: this.mute
+          });
+        }
+      } else {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          "class": "fas fa-volume-mute",
+          onClick: this.unmute
+        });
       }
     }
   }, {
-    key: "mouseDown",
-    value: function mouseDown(e) {
-      window.addEventListener('mousemove', this.mouseMove);
-      window.addEventListener('mouseup', this.mouseUp);
+    key: "setvol",
+    value: function setvol(e) {
+      console.log(e.target.value);
+      var songPlayer = document.getElementById("MainPlayer");
+      songPlayer.volume = e.target.value / 100;
     }
   }, {
-    key: "mouseUp",
-    value: function mouseUp(e) {
-      window.removeEventListener('mousemove', this.mouseMove);
-      window.removeEventListener('mouseup', this.mouseUp);
+    key: "progressBar",
+    value: function progressBar() {
+      var songPlayer = document.getElementById("MainPlayer");
+      var seekslider = document.getElementById("seekslider");
+
+      if (songPlayer) {
+        if (songPlayer.duration) {
+          seekslider.value = songPlayer.currentTime / songPlayer.duration * 100;
+        }
+      }
     }
   }, {
-    key: "positionHandle",
-    value: function positionHandle(position) {
-      var timelineWidth = this.timeline.offsetWidth - this.handle.offsetWidth;
-      var handleLeft = this.timeline.offsetWidth - 105 + (position - this.timeline.offsetLeft);
+    key: "seekDown",
+    value: function seekDown(e) {
+      var songPlayer = document.getElementById("MainPlayer");
+      var seekslider = document.getElementById("seekslider");
 
-      if (handleLeft <= timelineWidth) {
-        this.handle.style.marginLeft = handleLeft + "px";
+      if (songPlayer) {
+        if (songPlayer.duration) {
+          songPlayer.currentTime = Math.floor(e.target.value / 100 * songPlayer.duration);
+          console.log(Math.floor(e.target.value / 100 * songPlayer.duration));
+        }
       }
+    }
+  }, {
+    key: "seekUp",
+    value: function seekUp(e) {
+      var songPlayer = document.getElementById("MainPlayer");
+      var seekslider = document.getElementById("seekslider");
 
-      if (handleLeft < 0) {
-        this.handle.style.marginLeft = "0px";
-      }
-
-      if (handleLeft > timelineWidth) {
-        this.handle.style.marginLeft = timelineWidth + "px";
+      if (songPlayer) {
+        if (songPlayer.duration) {
+          songPlayer.currentTime = Math.floor(e.target.value / 100 * songPlayer.duration);
+          songPlayer.play();
+        }
       }
     }
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
-
       var art;
 
       if (this.props.curentSong) {
@@ -1806,29 +1837,52 @@ function (_React$Component) {
         art = {};
       }
 
+      var rangeValue;
+
+      if (document.getElementById("MainPlayer")) {
+        if (document.getElementById("MainPlayer").duration) {
+          rangeValue = document.getElementById("MainPlayer").currentTime / document.getElementById("MainPlayer").duration * 100;
+        } else {
+          rangeValue = 0;
+        }
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "playbackBarBack"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "playbackBarInner"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.pausePlay()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "playPauseDiv"
+      }, this.pausePlay()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "currentTime"
       }, this.state.Curtime), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "timeline",
-        onClick: this.mouseMove,
-        ref: function ref(timeline) {
-          _this3.timeline = timeline;
-        }
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "handle",
-        onMouseDown: this.mouseDown,
-        ref: function ref(handle) {
-          _this3.handle = handle;
-        }
+        className: 'seekslider'
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "range",
+        min: "0",
+        max: "100",
+        defaultValue: "0",
+        step: ".001",
+        id: "seekslider",
+        onClick: this.seekDown
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "duration"
       }, this.state.duration), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "volume_control"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "volIconDiv"
+      }, this.volOn()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: 'volSliderDiv'
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "range",
+        orient: "vertical",
+        min: "0",
+        max: "100",
+        defaultValue: "100",
+        step: "1",
+        id: "volSlide",
+        onChange: this.setvol
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "playbackSongArt",
         style: art
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.artistInfo(), this.songInfo()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("audio", {
@@ -6706,6 +6760,66 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 	}
 
 	return to;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/os-browserify/browser.js":
+/*!***********************************************!*\
+  !*** ./node_modules/os-browserify/browser.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+exports.endianness = function () { return 'LE' };
+
+exports.hostname = function () {
+    if (typeof location !== 'undefined') {
+        return location.hostname
+    }
+    else return '';
+};
+
+exports.loadavg = function () { return [] };
+
+exports.uptime = function () { return 0 };
+
+exports.freemem = function () {
+    return Number.MAX_VALUE;
+};
+
+exports.totalmem = function () {
+    return Number.MAX_VALUE;
+};
+
+exports.cpus = function () { return [] };
+
+exports.type = function () { return 'Browser' };
+
+exports.release = function () {
+    if (typeof navigator !== 'undefined') {
+        return navigator.appVersion;
+    }
+    return '';
+};
+
+exports.networkInterfaces
+= exports.getNetworkInterfaces
+= function () { return {} };
+
+exports.arch = function () { return 'javascript' };
+
+exports.platform = function () { return 'browser' };
+
+exports.tmpdir = exports.tmpDir = function () {
+    return '/tmp';
+};
+
+exports.EOL = '\n';
+
+exports.homedir = function () {
+	return '/'
 };
 
 
