@@ -1,6 +1,6 @@
-[logo]: https://cdn2.iconfinder.com/data/icons/minimalism/512/soundcloud.png
 
-# CumulusNote ![alt text][logo] 
+
+# CumulusNote ![alt text](https://cdn2.iconfinder.com/data/icons/minimalism/512/soundcloud.png)
 
 Cumulus note is a site that features audio content created and curated by our userbase!
 ![alt text](https://i.imgur.com/WETz7D0.jpg)
