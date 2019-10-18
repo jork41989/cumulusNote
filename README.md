@@ -1,13 +1,12 @@
 [logo]: https://cdn2.iconfinder.com/data/icons/minimalism/512/soundcloud.png
-
-# CumulusNote ![alt text][logo]
+# CumulusNote ![alt text][logo]
 
 Cumulus note is a site that features audio content created and curated by our userbase!
 ![alt text](https://i.imgur.com/WETz7D0.jpg)
 
 ---
 
-## Features
+ Features
 
 ### Users
 Our users can create an account or login by clicking the login/signup buttons on
@@ -30,7 +29,7 @@ Got some music you want to share? Head on over to the upload sectio
 work setting up your first song!
 
 ### Songs
-\
+
 Once a user is logged in they can upload their own songs via the upload form, which
 can be accessed via the header no matter where they are on the site.
 
