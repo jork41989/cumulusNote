@@ -4,7 +4,7 @@
 
 Cumulus note is a site that features audio content curated by our userbase!
 
-![alt text](https://imgur.com/WETz7D0)
+![alt text](https://i.imgur.com/WETz7D0.jpg)
 ---
 ## Features
 
