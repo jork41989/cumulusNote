@@ -42,3 +42,5 @@ Cumulus note is a site that features audio content created and curate
 * A song playback bar is located on the lower portion of the site the user is navigating,this allows the user to continue to listen to their chosen song no matter where they navigate.
 
 * The playback bar features a play and pause button (depending on whether there is a current song playing),a progress bar that the user can use to jump around the song, volume controls, and the songs information including links to both the artists page and the songs page.
+
+![alt text](http://g.recordit.co/alDz66VY6H.gif)
