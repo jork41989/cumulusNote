@@ -2,7 +2,7 @@
 
 # CumulusNote ![alt text](https://cdn2.iconfinder.com/data/icons/minimalism/512/soundcloud.png)
 
-CumulusNote is a site that features audio content created and curated by our userbase! . CumulusNote is built with React/Redux and Ruby on Rails, using a PostgreSQL database.
+CumulusNote is a site that features audio content created and curated by our userbase! . CumulusNote is built with React/Redux and Ruby on Rails, using a PostgreSQL database, and Amazon Web Services from media storage.
 ![alt text](https://i.imgur.com/WETz7D0.jpg)
 
 ---
