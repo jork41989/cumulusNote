@@ -3199,6 +3199,8 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var userProfile;
 
       if (this.props.comment.profile_photo) {
@@ -3207,6 +3209,23 @@ function (_React$Component) {
         };
       } else {
         userProfile = {};
+      }
+
+      var del;
+
+      if (this.props.currentUser) {
+        if (this.props.comment.user_id === this.props.currentUser.id) {
+          del = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+            onClick: function onClick() {
+              return _this2.props.removeASignlecomment(_this2.props.comment.id);
+            },
+            className: "removeComment"
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+            className: "far fa-trash-alt"
+          }));
+        } else {
+          del = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
+        }
       }
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3228,7 +3247,7 @@ function (_React$Component) {
         className: 'commentBody'
       }, this.props.comment.body)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: 'commentDate'
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.dateConvert())));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.dateConvert()), del));
     }
   }]);
 
@@ -4534,6 +4553,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SINGLE_COMMENT"]:
       console.log(action.comment);
       return Object.assign({}, state, _defineProperty({}, action.comment.id, action.comment));
+
+    case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_SINGLE_COMMENT"]:
+      var newState = Object.assign({}, state);
+      delete newState[action.comment.id];
+      return newState;
 
     default:
       return state;

@@ -43,7 +43,19 @@
 
 .commentDate{
   color: #999;
+  text-align: right;
 }
 .CommentDivs{
      width: 50%;
+}
+
+.removeComment{
+  font-size: 15px;
+  background-color: transparent;
+  color: #999;
+  margin-top: 5px;
+}
+
+.removeComment:hover{
+  color: black;
 }

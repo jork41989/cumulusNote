@@ -24,6 +24,17 @@ export default class ProfileSongIndex extends React.Component {
 
       }
     }
+    let del;
+    if (this.props.currentUser) {
+      if (this.props.comment.user_id === this.props.currentUser.id) {
+        del = <button onClick={() => this.props.removeASignlecomment(this.props.comment.id)} className={"removeComment"}><i className="far fa-trash-alt"></i></button>
+      } else {
+        del = <div></div>
+      }
+    }
+
+
+
     return (
       <div className={'songCommentDivWPhoto'}>
         <NavLink to={`/users/${this.props.comment.user_id}`} className={'noLineLink'} >
@@ -38,7 +49,7 @@ export default class ProfileSongIndex extends React.Component {
         </div>
         <div className={'commentDate'}>
           <p>{this.dateConvert()}</p>
-
+          {del}
         </div>
 
 
