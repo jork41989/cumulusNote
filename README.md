@@ -1,24 +1,7 @@
-# README
+[logo]: https://cdn2.iconfinder.com/data/icons/minimalism/512/soundcloud.png
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# CumulusNote ![alt text][logo]
 
-Things you may want to cover:
+Cumulus note is a site that features audio content curated by our userbase!
 
-* Ruby version
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

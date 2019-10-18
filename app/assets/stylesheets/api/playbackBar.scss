@@ -126,7 +126,7 @@
   cursor: pointer;
   animate: 0.2s;
   box-shadow: 1px 1px 1px #000000;
-  background: #FFFFFF;
+  background: transparent;
   border-radius: 11px;
   border: 1px solid #000000;
 }
@@ -142,7 +142,7 @@
   margin-top: 0px;
 }
  .seekslider input[type=range]:focus::-webkit-slider-runnable-track {
-  background: #FFFFFF;
+  background: transparent;
 }
  .seekslider input[type=range]::-moz-range-track {
   width: 100%;
@@ -150,7 +150,7 @@
   cursor: pointer;
   animate: 0.2s;
   box-shadow: 1px 1px 1px #000000;
-  background: #FFFFFF;
+  background: transparent;
   border-radius: 11px;
   border: 1px solid #000000;
 }
@@ -173,13 +173,13 @@
   color: transparent;
 }
  .seekslider input[type=range]::-ms-fill-lower {
-  background: #FFFFFF;
+  background: transparent;
   border: 1px solid #000000;
   border-radius: 22px;
   box-shadow: 1px 1px 1px #000000;
 }
  .seekslider input[type=range]::-ms-fill-upper {
-  background: #FFFFFF;
+  background: transparent;
   border: 1px solid #000000;
   border-radius: 22px;
   box-shadow: 1px 1px 1px #000000;
@@ -195,10 +195,10 @@
   cursor: pointer;
 }
  .seekslider input[type=range]:focus::-ms-fill-lower {
-  background: #FFFFFF;
+  background: transparent;
 }
  .seekslider input[type=range]:focus::-ms-fill-upper {
-  background: #FFFFFF;
+  background: transparent;
 }
 
 .volSliderDiv{
@@ -214,6 +214,7 @@
   -webkit-appearance: slider-vertical;
   margin: 10px 0;
   width: 20px;
+  
 }
  .volSliderDiv input[type=range]:focus {
   outline: none;
@@ -227,6 +228,8 @@
   background: #FFFFFF;
   border-radius: 11px;
   border: 1px solid #000000;
+  align-content: center;
+  align-items: center;
 }
  .volSliderDiv input[type=range]::-webkit-slider-thumb {
   box-shadow: 1px 1px 1px #000000;
@@ -238,6 +241,8 @@
   cursor: pointer;
   -webkit-appearance: none;
   margin-top: 0px;
+  align-content: center;
+  align-items: center;
 }
 
 
@@ -248,4 +253,62 @@
 
  .volSliderDiv input[type=range]:focus::-webkit-slider-runnable-track {
   background: #FFFFFF;
+}
+
+
+.volSliderDiv input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 30px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 1px 1px 1px #000000;
+  background: transparent;
+  border-radius: 11px;
+  border: 1px solid #000000;
+}
+ .volSliderDiv input[type=range]::-moz-range-thumb {
+  box-shadow: 1px 1px 1px #000000;
+  border: 0px solid #000000;
+  height: 29px;
+  width: 30px;
+  border-radius: 27px;
+  background: #FF5500;
+  cursor: pointer;
+}
+ .volSliderDiv input[type=range]::-ms-track {
+  width: 100%;
+  height: 30px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+ .volSliderDiv input[type=range]::-ms-fill-lower {
+  background: transparent;
+  border: 1px solid #000000;
+  border-radius: 22px;
+  box-shadow: 1px 1px 1px #000000;
+}
+ .volSliderDiv input[type=range]::-ms-fill-upper {
+  background: transparent;
+  border: 1px solid #000000;
+  border-radius: 22px;
+  box-shadow: 1px 1px 1px #000000;
+}
+ .volSliderDiv input[type=range]::-ms-thumb {
+  margin-top: 1px;
+  box-shadow: 1px 1px 1px #000000;
+  border: 0px solid #000000;
+  height: 29px;
+  width: 30px;
+  border-radius: 27px;
+  background: #FF5500 ;
+  cursor: pointer;
+}
+ .volSliderDiv input[type=range]:focus::-ms-fill-lower {
+  background: transparent;
+}
+ .volSliderDiv input[type=range]:focus::-ms-fill-upper {
+  background: transparent;
 }
