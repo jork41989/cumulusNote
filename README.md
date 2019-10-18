@@ -27,6 +27,8 @@ A users profile features their profile background image and profile ph
 features a list of their songs if they've uploaded one already along with a play button 
 for each song.
 
+![alt text](https://i.imgur.com/zg6IS87.png)
+
 Got some music you want to share? Head on over to the upload section and get to 
 work setting up your first song!
 
@@ -38,8 +40,15 @@ can be accessed via the header no matter where they are on the site
 Songs need to have a song file (audio only) and a title, also a user can upload 
 along with their song, this art will be featured along with their song across the site.
 
+Once a song has been uploaded, the owner can edit the song as long as they are logged in,
+they can modify everything but the songs file.
+
 Songs also can have comments, which can be viewed whether the user is logged in or not but, 
-to comment on a song a user must be logged in.
+to comment on a song a user must be logged in. Users can also delete their comments from within the same
+page from which they posted. These comments are accessable via the songs individual page.
+
+
+![alt text](https://i.imgur.com/q5Tpq5E.png)
 
 ### Playback
 
