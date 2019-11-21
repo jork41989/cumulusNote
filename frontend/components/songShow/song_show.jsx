@@ -27,7 +27,7 @@ export default class SongShow extends React.Component {
     })
   }
   componentDidUpdate(prevProps){
-    console.log(this.props)
+
     if (prevProps.match.params.id != this.props.match.params.id){
       this.props.requestSingleSong(this.props.match.params.id).then(response => {
         this.setState({ song: response.payload.song, user: response.payload.user, comments: response.payload.comments });
@@ -76,7 +76,7 @@ export default class SongShow extends React.Component {
   }
   commentsThere(){
     if (this.props.comments){
-     console.log( this.props.comments)
+
       return (<SongCommentsIndexContainer comments={this.props.comments} />)
     }
   }

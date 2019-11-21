@@ -6,7 +6,7 @@ export default (state = {}, action) => {
     case RECEIVE_SINGLE_SONG:
       return action.payload.comments || {}
     case RECEIVE_SINGLE_COMMENT:
-      console.log(action.comment)
+
       return Object.assign({}, state, { [action.comment.id]: action.comment })
     case REMOVE_SINGLE_COMMENT:
       let newState = Object.assign({}, state)

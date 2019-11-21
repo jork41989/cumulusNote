@@ -16,8 +16,7 @@ export default class CommentSongIndex extends React.Component {
 
   componentDidUpdate(prevProps) {
 
-      console.log(this.props)
-      console.log(prevProps)
+
   }
 
 

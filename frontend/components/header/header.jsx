@@ -18,12 +18,12 @@ componentDidMount(){
 }
 componentDidUpdate(prevProps){
   this.vis()
-  console.log(prevProps)
+
 }
 
 vis(){
   var currentLocation = window.location.hash;
-  console.log(this.props)
+
 
   if (this.props.location.pathname){
     if (this.props.location.pathname === '/') {

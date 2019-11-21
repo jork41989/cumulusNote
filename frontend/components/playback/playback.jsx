@@ -169,7 +169,7 @@ export default class Playback extends React.Component {
   }
 
   setvol(e){
-    console.log(e.target.value)
+
     let songPlayer = document.getElementById("MainPlayer");
     songPlayer.volume = e.target.value/100
   }
@@ -190,7 +190,7 @@ export default class Playback extends React.Component {
       if (songPlayer.duration) {
         
         songPlayer.currentTime = (Math.floor(e.target.value / 100 * songPlayer.duration))
-        console.log(Math.floor(e.target.value / 100 * songPlayer.duration))
+
       }  
     }
   }
