@@ -15,7 +15,7 @@ CumulusNote is a site that features audio content created and curated�
 
 ![alt text](http://g.recordit.co/6ds0NNMiaT.gif)
 
-
+https://i.imgur.com/s1TDxQ0.png
 * Once logged in users can customize their profile with a profile background image and profile photo that way they can let their new fans get to know them a little better. The profile photo  will follow the user across the site via the header and will be displayed alongside their name across most of the site. 
 
 * A users profile features their profile background image and profile photo. It also features a list of their songs if they've uploaded one already along with a play button for each song.
