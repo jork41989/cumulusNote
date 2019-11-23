@@ -124,7 +124,6 @@
   padding-right: 12px;
   font-size: 12px;
   background-color: #f50;
-  margin-left: 10px;
   cursor: pointer;
 }
 
@@ -161,6 +160,7 @@
   align-items: center;
   text-decoration: none;
   font: 100 14px/1.5 "Interstate","Lucida Grande",Arial,sans-serif;
+  margin-right: 20px;
 }
 
  .header-name {
@@ -175,3 +175,47 @@
    font-size: 50px;
   padding-right: 5px;
  }
+
+ .login-signup{
+   display: flex;
+ }
+
+ .devTop{
+  text-align: center;
+  color: white;
+    border: none;
+    text-decoration: none;
+    border-radius: 5px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 12px;
+    padding-right: 12px;
+    font-size: 12px;
+    border: 1px white solid;
+    margin-right: 20px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  
+
+  .devLinks{
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    top: 36px;
+    z-index: 997;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  .devDiv:hover .devLinks{
+    display: flex;
+  }
+
+  .devLink{
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 6px;
+  }

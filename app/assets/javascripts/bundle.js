@@ -1239,7 +1239,23 @@ __webpack_require__.r(__webpack_exports__);
         return openModal('signup');
       },
       className: "signupbtn"
-    }, "Create account"));
+    }, "Create account"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      "class": "devDiv"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      "class": "devTop"
+    }, "Dev Info"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "devLinks"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "https://github.com/jork41989",
+      className: "devLink"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      "class": "fab fa-github"
+    }), " Github"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "https://www.linkedin.com/in/ackermanjordan/",
+      className: "devLink"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      "class": "fab fa-linkedin"
+    }), " LinkedIn"))));
   };
 
   var personalGreeting = function personalGreeting() {
@@ -1253,7 +1269,23 @@ __webpack_require__.r(__webpack_exports__);
       className: "headerCurrentUser"
     }, " ", profileP(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "header-name"
-    }, " ", currentUser.f_name, " ", currentUser.l_name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    }, " ", currentUser.f_name, " ", currentUser.l_name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      "class": "devDiv"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      "class": "devTop"
+    }, "Dev Info"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "devLinks"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "https://github.com/jork41989",
+      className: "devLink"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      "class": "fab fa-github"
+    }), " Github"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "https://www.linkedin.com/in/ackermanjordan/",
+      className: "devLink"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      "class": "fab fa-linkedin"
+    }), " LinkedIn"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       className: "logout-button",
       onClick: logout
     }, "Log Out"));
@@ -1374,13 +1406,11 @@ function (_Component) {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
       this.vis();
-      console.log(prevProps);
     }
   }, {
     key: "vis",
     value: function vis() {
       var currentLocation = window.location.hash;
-      console.log(this.props);
 
       if (this.props.location.pathname) {
         if (this.props.location.pathname === '/') {
@@ -1782,7 +1812,6 @@ function (_React$Component) {
   }, {
     key: "setvol",
     value: function setvol(e) {
-      console.log(e.target.value);
       var songPlayer = document.getElementById("MainPlayer");
       songPlayer.volume = e.target.value / 100;
     }
@@ -1807,7 +1836,6 @@ function (_React$Component) {
       if (songPlayer) {
         if (songPlayer.duration) {
           songPlayer.currentTime = Math.floor(e.target.value / 100 * songPlayer.duration);
-          console.log(Math.floor(e.target.value / 100 * songPlayer.duration));
         }
       }
     }
@@ -3123,10 +3151,7 @@ function (_React$Component) {
     value: function componentDidMount() {}
   }, {
     key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {
-      console.log(this.props);
-      console.log(prevProps);
-    }
+    value: function componentDidUpdate(prevProps) {}
   }, {
     key: "hasComments",
     value: function hasComments() {
@@ -4040,8 +4065,6 @@ function (_React$Component) {
     value: function componentDidUpdate(prevProps) {
       var _this3 = this;
 
-      console.log(this.props);
-
       if (prevProps.match.params.id != this.props.match.params.id) {
         this.props.requestSingleSong(this.props.match.params.id).then(function (response) {
           _this3.setState({
@@ -4111,7 +4134,6 @@ function (_React$Component) {
     key: "commentsThere",
     value: function commentsThere() {
       if (this.props.comments) {
-        console.log(this.props.comments);
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_songComments_song_comments_index_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
           comments: this.props.comments
         });
@@ -4605,7 +4627,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return action.payload.comments || {};
 
     case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SINGLE_COMMENT"]:
-      console.log(action.comment);
       return Object.assign({}, state, _defineProperty({}, action.comment.id, action.comment));
 
     case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_SINGLE_COMMENT"]:
@@ -5004,7 +5025,10 @@ __webpack_require__.r(__webpack_exports__);
 
 var configureStore = function configureStore() {
   var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_1__["default"], preloadedState, Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_3__["default"], redux_logger__WEBPACK_IMPORTED_MODULE_2___default.a));
+
+  if (false) {} else {
+    return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_1__["default"], preloadedState, Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_3__["default"], redux_logger__WEBPACK_IMPORTED_MODULE_2___default.a));
+  }
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (configureStore);
