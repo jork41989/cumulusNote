@@ -255,19 +255,23 @@
     font-weight: 700;
     color: white;
     background-color: none;
-		display: inline-block;
-		position: absolute;
-    bottom: 2px;
-    left: 0;
+    display: inline-block;
+    position: absolute;
+    bottom: 20px;
+    left: 11%;
     right: 0;
     height: 20px;
-		cursor: pointer;
-		text-align: center;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    border-radius: 25px;
+    cursor: pointer;
+    text-align: center;
+    width: 200px;
 }
 
 .songArtfile:focus + label,
 .songArtfile + label:hover {
-		background-color: lightblue;
+		background-color: rgba(255, 255, 255, 0.2);
 		color: #000;
 }
 
@@ -344,14 +348,15 @@
 }
 
 .songMp3file + label {
-    font-size: 16px;
 		color: white;
 		width: 402px;
-    height: 26px;
     border-radius: 5px;
     background-color: #f50;
 		display: inline-block;
 		text-align: center;
+		font-size: 16px;
+    line-height: 18px;
+    padding: 10px 15px;
 }
 
 .songMp3file:focus + label,

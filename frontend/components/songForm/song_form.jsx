@@ -141,7 +141,7 @@ export default class SongForm extends React.Component {
 
             
             <input type="file" onChange={(e) => this.handleFile(e, "songFile")} accept="audio/*" name="songMp3" id="songMp3" className={"songMp3file"}/>
-              <label htmlFor="songMp3" id={"songFileLabel"}>🎵 Upload your Song MP3 here!</label>
+              <label htmlFor="songMp3" id={"songFileLabel"}>Upload your Song MP3 here!</label>
             </div>
           
           </div>
@@ -152,7 +152,7 @@ export default class SongForm extends React.Component {
               <div className={"songArtUploadDiv"}>
                 <div className={"previewSongArtDiv"} style={songArtBg}>
                   <input type="file" accept="image/*" onChange={(e) => this.handleFile(e, "songArt")} name="songArt" id="songArt" className={"songArtfile"}/>
-                  <label htmlFor="songArt" id={"songArtLabel"}>📁 Upload Song Art!</label>
+                  <label htmlFor="songArt" id={"songArtLabel"}>Upload Song Art!</label>
                 </div>
                 <input type="text"
                   value={this.state.name}

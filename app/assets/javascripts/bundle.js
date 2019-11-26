@@ -3898,7 +3898,7 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "songMp3",
         id: "songFileLabel"
-      }, "\uD83C\uDFB5 Upload your Song MP3 here!"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Upload your Song MP3 here!"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "songDetailsDiv"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "songInfoHeader"
@@ -3919,7 +3919,7 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "songArt",
         id: "songArtLabel"
-      }, "\uD83D\uDCC1 Upload Song Art!")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Upload Song Art!")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.name,
         onChange: this.update('name'),
