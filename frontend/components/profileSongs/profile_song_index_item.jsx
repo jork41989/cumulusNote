@@ -62,7 +62,7 @@ pauseOrPlay() {
 }
     if (this.props.currentUser) {
       if (this.props.user.id === this.props.currentUser.id) {
-        del = <button onClick={() => removeASignleSong(this.props.song.id)} className={"removeSongProfile"}><i className="far fa-trash-alt"></i></button>
+        del = <button onClick={() => this.props.removeASignleSong(this.props.song.id)} className={"removeSongProfile"}><i className="far fa-trash-alt"></i></button>
     } else {
       del = <div></div>
     }
