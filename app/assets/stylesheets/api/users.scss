@@ -7,6 +7,7 @@
   padding-left: 20%;
   padding-right: 20%;
   background-color: #333;
+  
 }
 
 .userbar {
@@ -32,6 +33,8 @@
   background-image: linear-gradient( rgb(245, 125, 66), #f50);
   padding-left: 5px;
   padding-right: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   align-items: center;
   cursor: pointer;
 }
@@ -110,6 +113,8 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 

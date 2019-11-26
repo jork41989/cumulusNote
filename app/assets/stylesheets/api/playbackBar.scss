@@ -208,8 +208,9 @@
 
 #seekslider {
   -webkit-appearance: none;
-  width: 100%;
+  width: 600px;
   height: 25px;
+  border-radius: 25px;
   background: #d3d3d3;
   outline: none;
   opacity: 0.7;
@@ -226,7 +227,8 @@
   appearance: none;
   width: 25px;
   height: 25px;
-  background: #4CAF50;
+  border-radius: 25px;
+  background:  #f50;
   cursor: pointer;
 }
 
@@ -234,7 +236,7 @@
 #seekslider::-moz-range-thumb {
   width: 25px;
   height: 25px;
-  background: #4CAF50;
+  background:  #f50;
   cursor: pointer;
 }
 .volSliderDiv{
