@@ -130,6 +130,7 @@
   font-size: 12px;
   background-color: #f50;
   cursor: pointer;
+  min-width: 70px;
 }
 
 .upload-a-button{
@@ -159,6 +160,7 @@
   margin-right: 5px;
 }
 .headerCurrentUser{
+  min-width: 100px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -200,6 +202,7 @@
     margin-right: 20px;
     font-weight: 500;
     cursor: pointer;
+    min-width: 50px;
   }
   
 
