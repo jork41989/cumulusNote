@@ -4,3 +4,5 @@ json.songs do
     json.song_id song.id
   end
 end
+
+# Returns all the songs that match the requested string

@@ -18,3 +18,6 @@ json.songs do
     end
   end
 end
+
+# Returns the information for the last 10 songs added to the DB, including each songs cover Art, each songs file, and each songs author and all of their associated information.
+

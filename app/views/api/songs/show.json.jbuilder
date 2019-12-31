@@ -24,3 +24,7 @@ json.comments do
     end
   end
 end
+
+# Returns all the information for the requested song including the authors information and profile photo.
+
+# Also returns all the comments that belong to that song and all of their authors information including profile photo.
