@@ -14,12 +14,16 @@ class Api::CommentsController < ApplicationController
       end
   end 
 
+  # creates a new comment
+
 def destroy
   @comment = Comment.find_by(id: params[:id])
   @comment.destroy
 
   render :show
 end
+
+# deletes a comment
 
 def update 
     @comment = Comment.find_by(id: params[:id])
@@ -32,6 +36,8 @@ def update
     end
 end
 
+# Updates an exsisting comment
+
 def index 
     
     @song = Song.find_by(id: params[:song_id])
@@ -39,6 +45,8 @@ def index
     # debugger
     render :index
 end
+
+# returns all the comments for a requested song.
 
 
 
@@ -48,4 +56,6 @@ end
   def comment_params
     params.require(:comment).permit(:body, :user_id, :parent_comment, :song_id)
   end
+
+  # Private method user to make sure a comment has all the requied items before saving.
 end
