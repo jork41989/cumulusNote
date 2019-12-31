@@ -13,10 +13,16 @@ class Api::UsersController < ApplicationController
     end
   end 
 
+  # Creates and saves a new user
+
+
+
   def show 
     @user = User.find_by(id: params[:id])
     render :show
   end
+
+  # returns a requested users information
 
   def update 
     @user = User.find_by(id: params[:id])
@@ -29,10 +35,14 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  # Updates a requested users information
+
   def index 
     @users = User.all 
     render :index
   end
+
+
 
   private
 
@@ -40,5 +50,6 @@ class Api::UsersController < ApplicationController
     params.require(:user).permit(:username, :email, :password, :f_name, :l_name, :profile_photo, :profile_background)
   end
 
+  # Used to verify that the provided information fits in at least one of the provided params.
 
 end
