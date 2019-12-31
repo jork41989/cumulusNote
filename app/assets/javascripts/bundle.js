@@ -1255,7 +1255,15 @@ __webpack_require__.r(__webpack_exports__);
       className: "devLink"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
       "class": "fab fa-linkedin"
-    }), " LinkedIn"))));
+    }), " LinkedIn"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "https://angel.co/jordan-ackerman-1",
+      className: "devLink"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      "class": "fab fa-angellist"
+    }), " AngelList"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "http://jordanackerman.com/",
+      className: "devLink"
+    }, "Portfolio"))));
   };
 
   var personalGreeting = function personalGreeting() {
@@ -1285,7 +1293,15 @@ __webpack_require__.r(__webpack_exports__);
       className: "devLink"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
       "class": "fab fa-linkedin"
-    }), " LinkedIn"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    }), " LinkedIn"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "https://angel.co/jordan-ackerman-1",
+      className: "devLink"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      "class": "fab fa-angellist"
+    }), " AngelList"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "http://jordanackerman.com/",
+      className: "devLink"
+    }, "Portfolio"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       className: "logout-button",
       onClick: logout
     }, "Log Out"));
@@ -37877,7 +37893,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

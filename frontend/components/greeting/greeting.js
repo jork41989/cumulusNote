@@ -21,6 +21,8 @@ export default ({ currentUser, logout, openModal }) => {
         <div className="devLinks">
           <a href="https://github.com/jork41989" className="devLink"><i class="fab fa-github"></i> Github</a>
           <a href="https://www.linkedin.com/in/ackermanjordan/" className="devLink"><i class="fab fa-linkedin"></i> LinkedIn</a>
+          <a href="https://angel.co/jordan-ackerman-1" className="devLink"><i class="fab fa-angellist"></i> AngelList</a>
+          <a href="http://jordanackerman.com/" className="devLink">Portfolio</a>
         </div>
       </div>
     </nav>
@@ -37,6 +39,8 @@ export default ({ currentUser, logout, openModal }) => {
         <div className="devLinks">
           <a href="https://github.com/jork41989" className="devLink"><i class="fab fa-github"></i> Github</a>
           <a href="https://www.linkedin.com/in/ackermanjordan/" className="devLink"><i class="fab fa-linkedin"></i> LinkedIn</a>
+          <a href="https://angel.co/jordan-ackerman-1" className="devLink"><i class="fab fa-angellist"></i> AngelList</a>
+          <a href="http://jordanackerman.com/" className="devLink">Portfolio</a>
         </div>
       </div>
       <button className="logout-button" onClick={logout}>Log Out</button>

@@ -8,9 +8,13 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find_by(session_token: session[:session_token])
   end
 
+  #Checks to see if there is a current user by looking up the session token
+
   def logged_in?
     !!current_user
   end
+
+  # Checks to see if there is a current user by running the current_user method and return a boolen.
 
   def login!(user)
     user.reset_session_token!
