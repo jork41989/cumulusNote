@@ -6,3 +6,6 @@ json.extract! @comment, :id, :body, :parent_comment, :created_at
 if @comment.user.profile_photo.attached? 
         json.profile_photo url_for(@comment.user.profile_photo)
 end
+
+
+# Returns each somments with its owners information including their profile photo from AWS.

@@ -3,3 +3,5 @@ json.comments do
     json.extract! comment, :id, :body, :user_id, :parent_comment
   end
 end
+
+# Returns all the requested songs comments information.
