@@ -12,6 +12,8 @@ class Api::SessionsController < ApplicationController
     end
   end
 
+  # Logs a user in.
+
   def destroy
     @user = current_user
     if @user #Render an empty {} upon successful logout.
@@ -22,6 +24,8 @@ class Api::SessionsController < ApplicationController
     end
 
   end
+
+  # Logs a user out.
 
 
 end
