@@ -6,3 +6,5 @@ json.users do
     end
   end
 end
+
+# Returns a group of users information.

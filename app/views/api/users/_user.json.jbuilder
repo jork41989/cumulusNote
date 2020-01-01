@@ -5,3 +5,5 @@ end
 if user.profile_background.attached? 
   json.profile_background url_for(user.profile_background)
 end
+
+# Returns the requested users information including their profile photo and profile background photo from AWS.
