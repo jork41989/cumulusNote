@@ -1,3 +1,3 @@
 json.partial! partial: 'api/users/user', user: @user
 
-# Returns a requested information.
+# Returns a requested users informaton set.
