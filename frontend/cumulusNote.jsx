@@ -4,9 +4,11 @@ import configureStore from "./store/store";
 import Root from "./components/root";
 
 
+// Entry file for react.
+
 document.addEventListener("DOMContentLoaded", () => {
   let rootEl = document.getElementById("root");
-
+  // Grabs the root element from the HTML file.
 
   let store;
   if (window.currentUser) {
@@ -21,6 +23,10 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     store = configureStore();
   }
+
+  // Checks to see if there is a current user, of there is it adds that user to the session and users slice of state.
+
+  
   window.getState = store.getState;
   ReactDOM.render(<Root store={store} />, rootEl)
 });
