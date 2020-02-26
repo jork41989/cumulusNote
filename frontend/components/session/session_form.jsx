@@ -57,7 +57,7 @@ export default class SessionForm extends React.Component {
       return (
         <div className="sessionField">
           
-          <input type="text"
+          <input type="email"
             value={this.state.email}
             onChange={this.update('email')}
             className="login-input" 
