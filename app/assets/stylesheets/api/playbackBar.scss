@@ -112,7 +112,9 @@
     width: 34px;
      cursor: pointer;
 }
-
+.seekslider{
+  width: 60%;
+}
 //  .seekslider input[type=range]  {
 //   height: 36px;
 //   -webkit-appearance: none;
@@ -208,7 +210,7 @@
 
 #seekslider {
   -webkit-appearance: none;
-  width: 600px;
+  width: 100%;
   height: 25px;
   border-radius: 25px;
   background: #d3d3d3;
