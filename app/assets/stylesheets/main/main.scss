@@ -47,3 +47,20 @@ body{
 .noLineLink{
   text-decoration: none;
 }
+
+  @media (max-width: 760px) {
+    .main_content_div{
+      width: 100%;
+      padding-left: 0%;
+      padding-right: 0%;
+      min-width: 100%;
+    }
+
+    #root{
+      width: 100%;
+    }
+    body{
+      width: 100vw;
+    }
+
+  }

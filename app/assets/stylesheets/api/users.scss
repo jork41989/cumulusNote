@@ -221,5 +221,11 @@
   
 
   @media (max-width: 760px) {
-    
+    .header-name{
+      display: none;
+    }
+
+    .headerCurrentUser{
+      min-width: 25px;
+    }
   }
