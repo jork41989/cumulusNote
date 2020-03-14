@@ -30,8 +30,8 @@ export default ({ currentUser, logout, openModal }) => {
   const personalGreeting = () => (
     
     <hgroup className="header-group">
-      <NavLink to={'/createSong'} className="upload-a-button" > Upload</NavLink>
-    
+      <NavLink to={'/createSong'} className="upload-a-button" > Upload </NavLink>
+      <NavLink to={'/createSong'} className="upload-mobile" ><i class="fas fa-upload"></i> </NavLink>
       <NavLink to={`/users/${currentUser.id}`} className={"headerCurrentUser"}> {profileP()}<p className="header-name"> {currentUser.f_name} {currentUser.l_name}</p></NavLink>
       
       <div class="devDiv">

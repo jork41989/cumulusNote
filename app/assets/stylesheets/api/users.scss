@@ -13,30 +13,7 @@
   cursor: pointer;
 }
 
-.logocontainer{
-  color: white;
-  text-decoration: none;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  background: #f50;
-  background-image: linear-gradient( rgb(245, 125, 66), #f50);
-  padding-left: 5px;
-  padding-right: 5px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  align-items: center;
-  cursor: pointer;
-}
 
-.logocontainer p{
-  margin:0;
-  height: 20px;
-}
-
-.logocontainer p:hover{
-  color: gray;
-}
 
 .modal-screen {
   position: fixed;
@@ -227,5 +204,6 @@
 
     .headerCurrentUser{
       min-width: 25px;
+      margin-right: 15px;
     }
   }

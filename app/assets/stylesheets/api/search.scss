@@ -26,3 +26,11 @@
   position: relative;
   z-index: 995;
 }
+
+
+ @media (max-width: 760px) {
+
+  .searchBar{
+    width: 60%;
+  }
+ }
