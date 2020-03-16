@@ -76,6 +76,10 @@ padding-right: 5px;
   display: none;
 }
 
+.fa-sign-out-alt{
+  display: none;
+}
+
 @media (max-width: 760px) {
   .HeaderBarHome{
     position: relative;
@@ -113,8 +117,17 @@ padding-right: 5px;
     color: white;
   }
 
+  .logoutText{
+  display: none;
+}
+
+  .fa-sign-out-alt{
+    display: flex;
+  }
   
-  
+  .logout-button{
+    width: 35px;
+  }
 }
 
 

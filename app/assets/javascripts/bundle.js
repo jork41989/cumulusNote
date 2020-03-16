@@ -1309,7 +1309,11 @@ __webpack_require__.r(__webpack_exports__);
     }, "Portfolio"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       className: "logout-button",
       onClick: logout
-    }, "Log Out"));
+    }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      className: "logoutText"
+    }, "Log Out"), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      "class": "fas fa-sign-out-alt"
+    }), " "));
   };
 
   return currentUser ? personalGreeting(currentUser, logout) : sessionLinks();

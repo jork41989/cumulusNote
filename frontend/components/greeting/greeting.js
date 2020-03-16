@@ -43,7 +43,7 @@ export default ({ currentUser, logout, openModal }) => {
           <a href="http://jordanackerman.com/" className="devLink">Portfolio</a>
         </div>
       </div>
-      <button className="logout-button" onClick={logout}>Log Out</button>
+      <button className="logout-button" onClick={logout}> <p className="logoutText">Log Out</p> <i class="fas fa-sign-out-alt"></i> </button>
     </hgroup>
   );
 
