@@ -35,7 +35,7 @@ export default ({ currentUser, logout, openModal }) => {
       <NavLink to={`/users/${currentUser.id}`} className={"headerCurrentUser"}> {profileP()}<p className="header-name"> {currentUser.f_name} {currentUser.l_name}</p></NavLink>
       
       <div class="devDiv">
-        <div class="devTop">Dev Info</div>
+        <div class="devTop"> <p className="devText">Dev Info</p> <i class="fas fa-laptop-code"></i> </div>
         <div className="devLinks">
           <a href="https://github.com/jork41989" className="devLink"><i class="fab fa-github"></i> Github</a>
           <a href="https://www.linkedin.com/in/ackermanjordan/" className="devLink"><i class="fab fa-linkedin"></i> LinkedIn</a>
