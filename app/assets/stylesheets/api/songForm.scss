@@ -394,3 +394,18 @@
     justify-content: space-around;
     align-items: center;
 }
+
+ @media (max-width: 760px) {
+	.songFileDiv{
+		padding-left: 0px;
+		padding-right: 0px;
+		margin-left: 10%;
+	}
+
+	.songMp3file + label {
+		width: 200px;
+	}
+	.songNameInput{
+		width: 100px;
+	}
+ }
