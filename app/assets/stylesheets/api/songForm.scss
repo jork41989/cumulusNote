@@ -406,6 +406,29 @@
 		width: 200px;
 	}
 	.songNameInput{
-		width: 100px;
+		width: 200px;
+		margin-bottom: 20px;
+		margin-left: 0px;
 	}
+	.songDetailsDiv{
+		display: flex;
+		width: 100%;
+	}
+	.song-submit{
+		width: 200px;
+	}
+	.songArtUploadDiv {
+    display: flex;
+    flex-direction: column-reverse;
+		align-items: center;
+		width: 300px;
+}
+.previewSongArtDiv{
+	width: 200px;
+	height: 200px;
+}
+.songArtfile + label {
+	width: 150px;
+}
+
  }
