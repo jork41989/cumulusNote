@@ -1234,7 +1234,11 @@ __webpack_require__.r(__webpack_exports__);
         return openModal('login');
       },
       className: "loginbtn"
-    }, "Login"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      className: "loginText"
+    }, " Login "), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      "class": "fas fa-sign-in-alt"
+    }), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       onClick: function onClick() {
         return openModal('signup');
       },
@@ -1243,7 +1247,11 @@ __webpack_require__.r(__webpack_exports__);
       "class": "devDiv"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       "class": "devTop"
-    }, "Dev Info"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      className: "devText"
+    }, " Dev Info "), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      "class": "fas fa-laptop-code"
+    }, " "), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "devLinks"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "https://github.com/jork41989",
@@ -37909,7 +37917,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

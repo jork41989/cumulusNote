@@ -124,6 +124,9 @@ padding-right: 5px;
     font-size: 16px;
     padding: 6px;
   }
+  .fa-sign-in-alt{
+    display: none;
+  }
 
 @media (max-width: 760px) {
   .HeaderBarHome{
@@ -132,18 +135,24 @@ padding-right: 5px;
     width: 100%;
     padding-right: 0%;
     padding-left: 0%;
-    padding-top: 3px;
-    padding-bottom: 3px;
+    padding-top: 7px;
+    padding-bottom: 7px;
   }
 
   .HeaderBar{
     width: 100%;
     padding-left: 0%;
     padding-right: 0%;
-     padding-top: 3px;
-    padding-bottom: 3px;
+     padding-top: 7px;
+    padding-bottom: 7px;
   }
 
+  .fa-sign-in-alt {
+    display: flex;
+  }
+  .loginText{
+    display: none;
+  }
   
 
   .logocontainerHome p {

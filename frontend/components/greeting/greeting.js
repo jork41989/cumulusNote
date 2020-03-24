@@ -14,10 +14,13 @@ export default ({ currentUser, logout, openModal }) => {
   const sessionLinks = () => (
     
     <nav className="login-signup">
-      <button onClick={() => openModal('login')} className="loginbtn">Login</button>
+      < button onClick = {
+        () => openModal('login')
+      }
+      className = "loginbtn" > < p className = "loginText" > Login </p> <i class="fas fa-sign-in-alt"></i > </button>
       <button onClick={() => openModal('signup')} className="signupbtn">Create account</button>
       <div class="devDiv">
-        <div class="devTop">Dev Info</div>
+        < div class = "devTop" > < p className = "devText" > Dev Info </p> < i class = "fas fa-laptop-code" > </i > </div >
         <div className="devLinks">
           <a href="https://github.com/jork41989" className="devLink"><i class="fab fa-github"></i> Github</a>
           <a href="https://www.linkedin.com/in/ackermanjordan/" className="devLink"><i class="fab fa-linkedin"></i> LinkedIn</a>
